@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1025 587">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="512.5" y1="568.47" x2="512.5" y2="-38.35" gradientUnits="userSpaceOnUse">
+      <stop offset=".75" stop-color="#272234"/>
+      <stop offset="1" stop-color="#1c1920"/>
+    </linearGradient>
+  </defs>
+  <g id="Final_scene" data-name="Final scene">
+    <g id="bg-hill">
+      <path class="cls-1" d="m1025,587s-1025,0-1025,0v-167.2c0-88.66,1.15-177.43.06-266.08,130.8,12.49,254.47-76.2,385.76-72.75,40.39,1.06,80.88,10.99,121.3,5.23,17.65-2.52,29.54-11.9,44.87-21,17.63-10.46,34.81-21.76,52.84-31.42C671.98-2.19,750.77-4.37,825.55,4.17c28.2,3.22,56.78,8.02,82.2,21.37,33.16,17.42,59.72,48.75,95.32,59.42,5.61,1.68,21.93,4.97,21.93,4.97v497.07Z"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,689 @@
+/* =======================================================================
+ *
+ *   PAGE FRAMEWORK
+ *
+ *   code supplied by Ant Pearson (2024) for use in the LBU Interactive 
+ *   Media Design module. 
+ *
+ * ======================================================================= */
+ :root {
+  --light-yellow: rgb(224,208,141,1.0);
+  /* --dark-purple_text: rgb(31,27,37,1.0); */
+  --dark-purple-text: #1D1A21;
+}
+
+body {
+  margin: 0;
+  background-color: #333;
+  color: white;
+  font-family: "PT Sans", cursive;
+}
+
+
+/**
+ * main-container is the main page wrap.  It is a good place to put
+ * any content that you want to stay on screen at all times (ie sit
+ * above the pages and not animate with them)
+ */
+#main-container {
+  width: 1024px;
+  height: 768px;
+  margin: 0 auto;
+  overflow: hidden; /* stops content sat outside the bounds of the container being visible */
+  position: relative;
+}
+
+/**
+ * pages is the container that holds all the individual pages
+ */
+.pages {
+  width: 1024px;
+  height: 768px;
+}
+
+/**
+ * the > symbol means apply this style to TOP-LEVEL (first-child) div's of
+ * the container .pages i.e. all the individual pages.  Div's INSIDE of those
+ * individual pages don't get passed this rule because of the >
+ */
+.pages > div {
+  /* border: solid 1px red; */
+  display: none; /* hide the page */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000; /* helps items animate without error in mobile webkit browsers */
+}
+
+.pages > div.current {
+  display: block; /* turn the page visible if this is the current page */
+}
+
+/* ===========================================================================
+ *
+ *   Some quick general styles for the purpose of this example.  
+ *   You can overwrite these with styles of your own.
+ */
+
+.button {
+  cursor: pointer;
+  padding: 0.5em 2em;
+  background-color: blue;
+  display: inline-block;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+h1 {
+  position: absolute;
+  font-size: 3em;
+  margin: 1em;
+}
+
+/**
+ *  Below this point is where you would add your own css style rules for 
+ *  each of your pages.  The example has been set up with 5 pages - an 
+ *  intro, menu page and 3 content pages.  You should alter this to fit 
+ *  your interactive, for instance, you might decide not to have a menu page.
+ */
+
+/* =========================================================================== *\
+
+	INTRO PAGE
+
+\* =========================================================================== */
+
+.intro-button {
+  position: absolute;
+  z-index: 3;
+  top: 650px;
+  left: 450px;
+}
+
+/* ------ MY TITLE SCREEN -------- */
+
+.page-intro {
+  height: 768px;
+  background: linear-gradient(180deg, rgba(29,26,45,1) 0%, rgba(41,36,54,1) 60%); /* 90deg down, dark to light */
+}
+
+.page-intro div, .page-intro button {
+  position: absolute;
+}
+
+.stars {
+  /* border: solid red 1px; */
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 1024px;
+}
+
+/* ----- BG HILL ----- */
+
+.bg-hill {
+  /* display: none; */
+  /* border: solid 1px red; */
+  top: 380px;
+  width: 1024px;
+  height: 300px;
+}
+
+/* ----- MOON ----- */
+.moon {
+  top: 300px;
+  left: 515px;
+  width: 500px;
+  transition: all 2s 2s;
+}
+
+.moon-up {
+  top: 80px;
+}
+
+/* ----- UMBRA MANOR ----- */
+
+.umbra-manor {
+  /* border: solid 1px yellow; */
+  width: 200px;
+  top: 230px;
+  left: 660px;
+}
+
+/* ----- LOGO ----- */
+
+
+.logo-container {
+  opacity: 0;
+  z-index: 3;
+  top: 100px;
+  left: -40px;
+  transition: all 2s 3.5s;
+}
+
+.logo-reveal {
+  top: 60px;
+  opacity: 1.0;
+  animation: logo-hover 1s ease-in-out alternate infinite;
+}
+
+@keyframes logo-hover {
+  from {
+      transform: translate(0,0);
+  }
+  to {
+      transform: translate(0,-20px);
+  }
+}
+
+.logo_ear-l {
+  width: 56px;
+  top: 60px;
+  left: 240px;
+  /* transition-delay: 6s; */
+}
+
+.logo_ear-r {
+  width: 56px;
+  top: 55px;
+  left: 490px;
+  /* transition-delay: 6s; */
+}
+
+.logo_teeth {
+  width: 102px;
+  top: 355px;
+  left: 352px;
+  /* transition-delay: 7s; */
+}
+
+.logo_text {
+  width: 300px;
+  text-align: center;
+  top: 80px;
+  left: 252px;
+  background: radial-gradient(circle, rgba(123,107,144,0.3) 0%, rgba(41,36,54, 0) 75%);
+  /* transition-delay: 4s; */
+}
+
+
+/* ----- TREES BACKGROUND ------ */
+
+.trees-bg {
+  border: solid green 1px;
+  background: url("/images/SVG/trees-background.svg") repeat-x left center;
+  background-size: 50%;
+  top: 72px;
+  left: 0;
+
+  width: 4096px;
+  height: 1004px;
+  z-index: 1;
+  animation: trees-scroll 20s linear infinite;
+  transition: all 3.5s;
+}
+
+/* ----- TREES FOREGROUND ------ */
+
+.trees-fg {
+
+  border: solid 1px red;
+
+  background: url("/images/SVG/trees-foreground.svg") repeat-x;
+  background-size: 50%;
+
+  top: 120px;
+  left: 0;
+  
+  width: 200%;
+  height: 70%;
+  z-index: 2;
+  
+  animation: trees-scroll 1.5s  linear infinite;
+  transition: all 3s;
+}
+
+/* Trees scroll animation */
+
+@keyframes trees-scroll {
+  from {
+      background-position: right;
+  }
+  to {
+      background-position: left;
+  }
+}
+
+.trees-fg-zoom-out {
+  top: 450px;
+  background-size: 25%;
+  animation-play-state: paused;
+}
+
+.trees-bg-zoom-out {
+  top: 250px;
+  background-size: 25%;
+  animation-play-state: paused;
+}
+
+/* ----- ROAD ----- */
+
+.road {
+  /* border: solid white 1px; */
+  left: 0;
+  bottom: 0;
+  width: 1028px;
+  height: 127px;
+  background-color: #1D1A21;
+  z-index: 2;
+  transition: all 3s;
+}
+
+.road-zoom-out {
+  bottom: -200px;
+}
+
+/* ----- CAR ------ */
+
+.car {
+  /* border: solid red 1px; */
+  left: 121px;
+  top: 424px;
+  z-index: 2;
+  width: 900px;
+  height: 275px;
+}
+
+.car-body {
+  position: inherit;
+  animation: car-body-bumps 2s linear infinite;
+}
+
+@keyframes car-body-bumps {
+  0% {
+      transform: translate(0,0);
+  }
+  25% {
+      transform: translate(0,1%)
+  }
+
+  75% {
+      transform: translate(0,1%);
+  }
+}
+
+.car-wheel {
+  transform-origin: center;
+  animation: car-wheel-rotate 600ms linear infinite; 
+}
+
+.car-wheel__back {
+  top: 156px;
+  left: 67px;
+}
+
+.car-wheel__front {
+  top: 156px;
+  left: 256px;
+
+}
+
+@keyframes car-wheel-rotate {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(350deg);
+  }
+}
+
+/* Start Button Clicked */
+
+.car-move-off {
+  animation: car-move-off 3s ease-in forwards;
+}
+
+@keyframes car-move-off {
+  from {
+      transform: translate(0,0);
+  }
+
+  to {
+      transform: translate(1024px,0)
+  }
+}
+
+
+/* ----- CLOUDS ----- */
+
+.cloud-container {
+  /* border: solid 1px yellow; */
+  position: relative;
+  width: 200%;
+  height: 50%;
+  position: top left;
+}
+
+.cloud {
+  position: absolute;
+  animation: cloud-drift 35s linear infinite;
+  transform: scale(10%, 10%);
+}
+
+.cloud-1 {
+  /* border: solid 1px red; */
+  top: 5%;
+  /* left: 55%; */
+  animation-delay: -25s;
+
+}
+
+.cloud-2 {
+  /* border: solid 1px green; */
+  top: 6%;
+  /* left: 5%; */
+  animation-delay: -2s;
+}
+
+.cloud-3 {
+  /* border: solid 1px blue; */
+  top: 8%;
+  /* left: 75%; */
+  animation-delay: -22s;
+}
+
+.cloud-4 {
+  /* border: solid 1px yellow; */
+  top: 10%;
+  /* left: 30%; */
+  animation-delay: -15s;
+}
+
+@keyframes cloud-drift {
+  0% {
+      opacity: 0;
+      /* transform-origin: top left; */
+      transform: translate(400%, 0);
+  }
+
+  20% {
+      opacity: 1.0;
+  }
+
+  80% {
+      opacity: 1.0;
+  }
+
+  100% {
+      opacity: 0;
+      transform: translate(-200%,0);
+  }
+
+}
+
+/* ----- START BUTTON ----- */
+
+.start-button {
+
+  --start-shadow-x: -2px;
+  --start-shadow-y: 2px;
+
+  --end-shadow-x: -4px;
+  --end-shadow-y: -4px;
+
+  bottom: 17%;
+  right: 10%;
+  z-index: 2;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  
+  color: var(--dark-purple-text);
+  font-family: "Andika" , sans-serif;
+  font-size: 5em;
+  font-weight: bolder;
+  text-transform: uppercase;
+
+  animation: start-button-glow 1s alternate infinite;
+
+}
+
+/* Start Button clicked */
+
+.start-button-clicked {
+  animation: start-button-clicked 150ms linear alternate infinite, start-button-fadeout-lift 1s 0.5s ease-out forwards;
+}
+
+@keyframes start-button-glow {
+  0% {
+      text-shadow: var(--start-shadow-x) var(--start-shadow-y) 0px var(--light-yellow), 0 0 8px rgb(224,208,141, 0);
+  }
+  
+  100% {
+      transform: translate(0, 8px);
+      text-shadow: var(--end-shadow-x) var(--end-shadow-y) 0px var(--light-yellow), 0 0 16px rgb(224,208,141, 1.0);
+  }
+}
+
+@keyframes start-button-clicked {
+  0% {
+      text-shadow: var(--start-shadow-x) var(--start-shadow-y) 0px var(--light-yellow), 0 0 8px rgb(224,208,141, 0), 0 0 0 var(--light-yellow);
+  }
+
+  100% {
+      text-shadow: var(--end-shadow-x) var(--end-shadow-y) 0px var(--light-yellow), 0 0 16px rgb(224,208,141, 1.0), 0 0 25px var(--light-yellow);
+  }
+}
+
+@keyframes start-button-fadeout-lift {
+  0% {
+      opacity: 100%;
+  }
+
+  50% {
+      opacity: 10%;
+  }
+
+  100% {
+      transform: translate(0, -200px);
+      opacity: 0%;
+  }
+}
+
+
+/* =========================================================================== *\
+
+	MENU PAGE
+
+\* =========================================================================== */
+
+.page-menu {
+  height: 768px;
+  background-color: orange;
+}
+
+.menu1-button {
+  position: absolute;
+  top: 350px;
+  left: 230px;
+}
+
+.menu2-button {
+  position: absolute;
+  top: 350px;
+  left: 430px;
+}
+
+.menu3-button {
+  position: absolute;
+  top: 350px;
+  left: 630px;
+}
+
+/* =========================================================================== *\
+
+	OTHER PAGES
+
+\* =========================================================================== */
+
+.page-yourPageID1 {
+  height: 768px;
+  background-color: green;
+}
+
+.p1-menu-button,
+.p2-menu-button,
+.p3-menu-button {
+  position: absolute;
+  top: 20px;
+  left: 800px;
+}
+
+.p1-button {
+  position: absolute;
+  top: 650px;
+  left: 800px;
+}
+
+.page-yourPageID2 {
+  height: 768px;
+  background-color: purple;
+}
+
+.p2-button {
+  position: absolute;
+  top: 650px;
+  left: 800px;
+}
+
+.page-yourPageID3 {
+  height: 768px;
+  background-color: red;
+}
+
+.p3-button {
+  position: absolute;
+  top: 650px;
+  left: 800px;
+}
+
+/* =========================================================================== *\
+
+	PERSISTENT CONTAINER - used for anything you want to stay visible on the 
+	screen across all pages
+
+\* =========================================================================== */
+
+.persistent-stuff {
+  position: absolute;
+  top: 670px;
+  left: 20px;
+  width: 400px;
+  color: white;
+}
+
+/* =========================================================================== *\
+
+	TRANSITION CODE
+
+	Leave this alone if you are happy with either fade or push transitions 
+	between pages.  If you want faster transitions you could alter the 1s 
+	timing in the .in, .out class rules below
+
+\* =========================================================================== */
+
+/**
+ * The transition function in script.js adds the following classes dynamically 
+ * to the incoming and outgoing pages.  Adding the in, .out classes to the pages 
+ * is what sets up the animation. A further class is added (e.g. .push-left) 
+ * depending on the type of animation chosen.  It is this class addition that 
+ * starts the animation running
+ */
+
+.in,
+.out {
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
+}
+
+.push-left.out {
+  animation-name: outToLeft;
+}
+
+.push-left.in {
+  animation-name: inFromRight;
+}
+
+.push-right.out {
+  animation-name: outToRight;
+}
+
+.push-right.in {
+  animation-name: inFromLeft;
+}
+
+.fade.out {
+  animation-name: fadeOut;
+}
+
+.fade.in {
+  animation-name: fadeIn;
+}
+
+@keyframes outToLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes outToRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes inFromRight {
+  from {
+    transform: translateX(1024px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes inFromLeft {
+  from {
+    transform: translateX(-1024px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
