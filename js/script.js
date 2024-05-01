@@ -1,7 +1,21 @@
+// ---- TO DO -----
+
+// - work out page transition
+
+// =========================================
+
+
 // --------------------------- Intro Page -------------------------------------
-const introButton = document.querySelector(".intro-button");
-introButton.addEventListener("click", function () {
-  transition(".page-menu", "push-left");
+import {titleAnimation} from "./title-screen.js";
+
+const startButton = document.querySelector(".start-button");
+const titlePageMoon = document.querySelector(".moon");
+
+startButton.addEventListener("click", function () {
+  titleAnimation();
+  titlePageMoon.addEventListener("animationend", () => {
+    transition(".page-menu", "fade");
+  })
 });
 
 // --------------------------- Menu Page -------------------------------------

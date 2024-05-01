@@ -125,7 +125,6 @@ h1 {
 /* ----- BG HILL ----- */
 
 .bg-hill {
-  /* display: none; */
   /* border: solid 1px red; */
   top: 380px;
   width: 1024px;
@@ -213,7 +212,7 @@ h1 {
 /* ----- TREES BACKGROUND ------ */
 
 .trees-bg {
-  border: solid green 1px;
+  /* border: solid green 1px; */
   background: url("/images/SVG/trees-background.svg") repeat-x left center;
   background-size: 50%;
   top: 72px;
@@ -230,7 +229,7 @@ h1 {
 
 .trees-fg {
 
-  border: solid 1px red;
+  /* border: solid 1px red; */
 
   background: url("/images/SVG/trees-foreground.svg") repeat-x;
   background-size: 50%;
