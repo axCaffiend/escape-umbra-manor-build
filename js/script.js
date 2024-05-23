@@ -4,18 +4,28 @@
 
 // =========================================
 
+// CURRENT WORKING PAGE
+// transition(".page-eye-room", "fade");
+
+// const testFlameButton = document.querySelector(".test-flame");
+const flameBar = document.querySelector(".key-sculpture .flame");
+
+// testFlameButton.addEventListener("click", (e) => {
+//   flameBar.classList.add("flame-01")
+// })
+
+
+
+
 
 // --------------------------- Intro Page -------------------------------------
 import {titleAnimation} from "./title-screen.js";
 
 const startButton = document.querySelector(".start-button");
-const titlePageMoon = document.querySelector(".moon");
 
-startButton.addEventListener("click", function () {
+startButton.addEventListener("click", function (event) {
   titleAnimation();
-  titlePageMoon.addEventListener("animationend", () => {
-    transition(".page-menu", "fade");
-  })
+  setTimeout(()=>{transition(".page-menu", "fade")}, 11000);
 });
 
 // --------------------------- Menu Page -------------------------------------
@@ -27,7 +37,7 @@ menuButton1.addEventListener("click", function () {
 
 const menuButton2 = document.querySelector(".menu2-button");
 menuButton2.addEventListener("click", function () {
-  transition(".page-yourPageID2", "push-left");
+  transition(".page-eye-room", "push-left");
 });
 
 const menuButton3 = document.querySelector(".menu3-button");
@@ -47,10 +57,6 @@ page1MenuButton.addEventListener("click", function () {
   transition(".page-menu", "fade");
 });
 
-const page2Button = document.querySelector(".p2-button");
-page2Button.addEventListener("click", function () {
-  transition(".page-yourPageID3", "push-right");
-});
 
 const page2MenuButton = document.querySelector(".p2-menu-button");
 page2MenuButton.addEventListener("click", function () {

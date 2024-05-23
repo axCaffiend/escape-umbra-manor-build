@@ -10,6 +10,10 @@
   --light-yellow: rgb(224,208,141,1.0);
   /* --dark-purple_text: rgb(31,27,37,1.0); */
   --dark-purple-text: #1D1A21;
+
+  /* EYE-ROOM */
+  --shadows--purple: #292436;
+  --walls-lilac: #AB9EB3;
 }
 
 body {
@@ -89,6 +93,39 @@ h1 {
  *  intro, menu page and 3 content pages.  You should alter this to fit 
  *  your interactive, for instance, you might decide not to have a menu page.
  */
+
+
+
+
+
+
+
+
+/* -------- TO DO ----------- */
+/* 
+
+>>> Room:
+- Place eye-lid for eye 
+- Place exhibits and their plaques/text
+- Add darkness overlay (for intro)
+
+>>> Panel:
+- Add labels
+- Add spaces
+
+>>> Dialogue Box (in separate container)
+
+*/
+
+
+
+
+
+
+.ref-image {
+  opacity: 0;
+  /* opacity: 10%; */
+}
 
 /* =========================================================================== *\
 
@@ -493,6 +530,17 @@ h1 {
   }
 }
 
+/* -------- END INTRO PAGE --------- */
+
+
+
+
+
+
+
+
+
+
 
 /* =========================================================================== *\
 
@@ -523,13 +571,17 @@ h1 {
   left: 630px;
 }
 
+
+
+
+
 /* =========================================================================== *\
 
 	OTHER PAGES
 
 \* =========================================================================== */
 
-.page-yourPageID1 {
+.page-Dungeon {
   height: 768px;
   background-color: green;
 }
@@ -548,7 +600,7 @@ h1 {
   left: 800px;
 }
 
-.page-yourPageID2 {
+.page-yourPageID3 {
   height: 768px;
   background-color: purple;
 }
@@ -559,16 +611,158 @@ h1 {
   left: 800px;
 }
 
-.page-yourPageID3 {
+
+
+
+
+
+
+/* =========================================================================== *\
+
+	02 EYE ROOM
+
+\* =========================================================================== */
+
+.page-eye-room {
   height: 768px;
-  background-color: red;
 }
 
-.p3-button {
+.page-eye-room * {
   position: absolute;
-  top: 650px;
-  left: 800px;
 }
+
+.eye-room-main {
+  width: 1024px;
+  height: 768px;
+  background: url("/images/eye-room/room-bg.png") 0 -106px no-repeat;
+  object-fit: cover;
+}
+
+
+/* Room Light */
+
+.room-light {
+  top: 33px;
+  left: 288px;
+  width: 142px; 
+  height: 63px; 
+}
+
+.room-light__on {
+  opacity: 100%;
+}
+
+.room-light__beam {
+  opacity: 100%;
+  mix-blend-mode: color-dodge;
+  top: 35px;
+  left: -54px;
+}
+
+
+/* Room Door */
+.room-door.closed {
+  /* border: solid 1px red; */
+  top: 224px;
+  left: 630px;
+  width: 103.5px;
+  height: 287px;
+  background: url("/images/eye-room/door-sprites.png");
+}
+
+.room-door.open {
+  background-position-x: 103.5px;
+}
+
+
+/* Key Sculpture */
+
+.key-sculpture {
+  top: 253px;
+  left: 287px;
+  width: 142px;
+  height: 282px;
+  background: url("/images/eye-room/key.png");
+}
+
+.key-sculpture .flame {
+  /* border: solid 1px red; */
+  top: 169px;
+  left: 63px;
+  width: 24px;
+  height: 34px;
+  background: url("/images/eye-room/key-flame-fill.png") no-repeat;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1s;
+}
+
+
+/* Light Switch */
+
+.light-switch.off {
+  top: 317px;
+  left: 581px;
+  width: 44px;
+  height: 62px;
+  background: url("/images/eye-room/light-switch-sprites.png");
+}
+
+.light-switch.on {
+  background-position-x: right;
+}
+
+
+/* Control Panel Sprite */
+.panel-room-sprite {
+  top: 365px;
+  left: 803px;
+  width: 153px;
+  height: 182px;
+  background: url("/images/eye-room/panel-room-sprite.png");
+}
+
+/* Retina */
+
+/* Iris */
+
+/* Lens */
+
+/* Brain */
+
+
+
+/* CONTROL PANEL VIEW */
+
+.panel-main {
+  display: none;
+
+  background: linear-gradient(180deg, var(--walls-lilac), var(--shadows--purple));
+  width: 1024px;
+  height: 768px;
+  /* perspective: 1000px;
+  perspective-origin: 0% 25%; */
+}
+
+.panel-contents {
+  /* border: solid 1px green; */
+  top: 34px;
+  left: 42px;
+  width: 944px;
+  height: 703px;
+  background: url("/images/eye-room/panel-main.png") no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* =========================================================================== *\
 

@@ -12,7 +12,8 @@ function titleAnimation() {
     const moon = document.querySelector(".moon");
     const logo = document.querySelector(".logo-container");
 
-    // startButton.addEventListener("click", startGame)
+
+
 
     // Start button flash and fade out
     startButton.classList.add("start-button-clicked");
@@ -25,15 +26,11 @@ function titleAnimation() {
         treesFg.classList.add("trees-fg-zoom-out");
         road.classList.add("road-zoom-out");
         moon.classList.add("moon-up");
+        
         logo.classList.add("logo-reveal");
         }
     )
 
-    // moon.addEventListener("animationend" , () => {
-    //     console.log("animation ended");
-    //     finished = true;
-    //     }
-    // )
 
     // return finished;
 
