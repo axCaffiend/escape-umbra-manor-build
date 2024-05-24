@@ -101,6 +101,9 @@ h1 {
 
 
 
+
+
+
 /* -------- TO DO ----------- */
 /* 
 
@@ -693,7 +696,7 @@ h1 {
   height: 34px;
   background: url("/images/eye-room/key-flame-fill.png") no-repeat;
   clip-path: inset(100% 0 0 0);
-  transition: clip-path 1s;
+  transition: clip-path 800ms;
 }
 
 
@@ -704,7 +707,7 @@ h1 {
   left: 581px;
   width: 44px;
   height: 62px;
-  background: url("/images/eye-room/light-switch-sprites.png");
+  background: url("/images/eye-room/light-switch-sprites.png") no-repeat;
 }
 
 .light-switch.on {
@@ -718,16 +721,163 @@ h1 {
   left: 803px;
   width: 153px;
   height: 182px;
-  background: url("/images/eye-room/panel-room-sprite.png");
+  background: url("/images/eye-room/panel-room-sprite.png") no-repeat;
 }
 
 /* Retina */
+.eye-room-main .retina {
+  top: 158px;
+  left: 385px;
+  width: 163px;
+  height: 212px;
+  background: url("/images/eye-room/retina-and-plaque.png") no-repeat;
+}
+
+.eye-room-main .retina .plaque-text {
+  top: 181px;
+  left: 69px;
+  width: 44px;
+  height: 18px;
+  background: url("/images/eye-room/retina-plaque-text-on.png") no-repeat;
+  opacity: 0;
+
+}
 
 /* Iris */
 
+.eye-room-main .iris {
+  top: 116px;
+  left: 14px;
+  width: 130px;
+  height: 232px;
+  background: url("/images/eye-room/iris-and-plaque.png") no-repeat;
+}
+
+.eye-room-main .iris .plaque-text {
+  top: 194px;
+  left: 60px;
+  width: 29px;
+  height: 23px;
+  background: url("/images/eye-room/iris-plaque-text-on.png") no-repeat;
+  opacity: 0;
+}
+
 /* Lens */
+.eye-room-main .lens {
+  top: 201px;
+  left: 192px;
+  width: 87px;
+  height: 201px;
+  background: url("/images/eye-room/lens-and-plaque.png") no-repeat;
+}
+
+.eye-room-main .lens .plaque-text {
+  top: 162px;
+  left: 28px;
+  width: 35px;
+  height: 17px;
+  background: url("/images/eye-room/lens-plaque-text-on.png") no-repeat;
+  opacity: 0;
+}
 
 /* Brain */
+
+.eye-room-main .brain-exhibit {
+  top: 366px;
+  left: 24px;
+  width: 164px;
+  height: 206px;
+}
+.eye-room-main .brain-jar {
+  top: 0;
+  left: 0;
+  width: 128px;
+  height: 206px;
+  background: url("/images/eye-room/brain-jar.png") no-repeat;
+}
+
+.eye-room-main .brain-jar .brain {
+  top: 57px;
+  left: 28px;
+  width: 63px;
+  height: 58px;
+  background: url("/images/eye-room/brain.png") no-repeat;
+  animation: brain-float 2s ease-in-out alternate infinite;
+}
+
+@keyframes brain-float {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(8px);
+  }
+}
+
+.eye-room-main .brain-jar .brain-jar-highlights {
+  top: 15px;
+  left: 23px;
+  width: 80px;
+  height: 147px;
+  background: url("/images/eye-room/brain-jar-highlights.png") no-repeat;
+}
+
+.eye-room-main .brain-plaque {
+  top: 83px;
+  left: 103px;
+  width: 61px;
+  height: 119px;
+  background: url("/images/eye-room/brain-plaque.png") no-repeat;
+}
+
+.eye-room-main .brain-plaque .plaque-text {
+  top: 6px;
+  left: 26px;
+  width: 23px;
+  height: 26px;
+  background: url("/images/eye-room/brain-plaque-text-on.png") no-repeat;
+  opacity: 0;
+}
+
+
+
+/* Plaque text - Show animation */
+.plaque-text.show {
+  animation: plaque-text-wipe 800ms 1s forwards, plaque-text-glow 800ms 2s forwards;
+}
+
+@keyframes plaque-text-glow {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 75%;
+  }
+
+  75% {
+    opacity: 25%;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes plaque-text-wipe {
+  0% {
+    opacity: 100%;
+    clip-path: inset(0 0 100% 0);
+  }
+
+  100% {
+    opacity: 100%;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+
+
 
 
 

@@ -5,7 +5,7 @@
 // =========================================
 
 // CURRENT WORKING PAGE
-// transition(".page-eye-room", "fade");
+transition(".page-eye-room", "fade");
 
 // const testFlameButton = document.querySelector(".test-flame");
 const flameBar = document.querySelector(".key-sculpture .flame");
