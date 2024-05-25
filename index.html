@@ -15,7 +15,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Your title here</title>
+    <title>Escape Umbra Manor</title>
 
     <!-- the main style sheet you should edit -->
     <link rel="stylesheet" href="css/style.css" />
@@ -142,10 +142,12 @@
         <!-- ========================= MENU =========================== -->
 
         <div class="page-menu">
+
           <h1>Main Menu</h1>
           <div class="menu1-button button">Stage 1 Dungeon</div>
           <div class="menu2-button button">Stage 2 Eye Room</div>
-          <div class="menu3-button button">Go to page three</div>
+          <div class="menu3-button button">Stage 3 Mirror Hall</div>
+
         </div>
         <!-- menu page -->
 
@@ -156,8 +158,6 @@
 
         <div class="page-dungeon">
           <h1>Dungeon</h1>
-          <div class="p1-button button">Go to page two</div>
-          <div class="p1-menu-button button">Go back to menu</div>
         </div>
 
         <!-- ============= -->
@@ -179,17 +179,17 @@
             <!-- Retina -->
 
             <div class="retina">
-              <div class="plaque-text show"></div>
+              <div class="plaque-text"></div>
             </div>
 
             <!-- Lens -->
             <div class="lens">
-              <div class="plaque-text show"></div>
+              <div class="plaque-text"></div>
             </div>
 
             <!-- Iris -->
             <div class="iris">
-              <div class="plaque-text show"></div>
+              <div class="plaque-text"></div>
             </div>
 
             <!-- Room light -->
@@ -220,7 +220,7 @@
               
                 <div class="brain-jar-highlights"></div>
                 <div class="brain-plaque">
-                  <div class="plaque-text show"></div>
+                  <div class="plaque-text"></div>
                 </div>
               </div>
             </div>
@@ -232,14 +232,13 @@
             <div class="panel-room-sprite"></div>
 
 
-
-
-            
-            <!-- <button class="test-flame"> Test flame</button> -->
+            <!-- <div class="darkness-overlay"></div> -->
             
             
           </div> <!-- end Room -->
           
+
+
           <!-- ***** CONTROL PANEL ***** -->
 
           <div class="panel-main">
@@ -253,24 +252,60 @@
 
 
         
-        <div class="page-yourPageID3">
+        <div class="page-mirror-hall">
           <h1>Page three</h1>
           <div class="p3-menu-button button">Go back to menu</div>
         </div>
       </div>
       <!-- end of pages -->
 
-      <!-- add any containers here that you don't want to animate when pages transition -->
-      <div class="persistent-stuff">
-        <!-- by placing a container outside of the .pages container you can make
-        things stay on the screen at all times. You could for instance choose to
-        have some navigation or a logo present at all times -->
+
+
+
+
+
+      <!-- ---- PERSISTENT/UI STUFF ---- -->
+
+      <div class="persistent-stuff-container">
+
+        <!-- Pause Menu -->
+        <nav class="pause-menu show">
+
+          <div class="pause-overlay hide"></div>
+          <button class="pause-menu-button"></button>
+          <div class="pause-menu-options closed">
+            <button class="ui-button resume">Resume <img src="images/ui/ui-symbol-play.svg" alt="Play symbol"></button>
+            <button class="ui-button restart">Restart <img src="images/ui/ui-symbol-restart.svg" alt="Redo symbol"></button>
+            <button class="ui-button return">Return to Main Menu <img src="images/ui/ui-symbol-home.svg" alt="Home symbol"></button>
+          </div>
+        </nav>
+
+
+        <!-- Dialogue Box -->
+        <div class="dialogue">
+          
+          <div class="dialogue-box">
+            <div class="character-name"><p>Character Name</p></div>
+
+            <div class="dialogue-content">
+              <p>Dialogue content here</p>
+            </div>
+
+            <button class="next-dialogue-button">Next</button>
+          </div>
+
+        </div>
+
       </div>
+      <!-- end of persistent stuff -->
+
     </div>
     <!-- end of main container -->
 
+
+
     <!-- Link to your own JavaScript file  -->
-    <script type="module" src="js/script.js"></script>
-    <!-- <script type="module" src="js/title-screen.js"></script> -->
+    <script type="module" src="js/main-script.js"></script>
+  
   </body>
 </html>

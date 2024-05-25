@@ -4,22 +4,72 @@
 
 // =========================================
 
+import {titleAnimation} from "./title-screen.js";
+import { eyeRoomScript } from "./eye-room.js";
+
+
+
 // CURRENT WORKING PAGE
 transition(".page-eye-room", "fade");
 
-// const testFlameButton = document.querySelector(".test-flame");
-const flameBar = document.querySelector(".key-sculpture .flame");
 
-// testFlameButton.addEventListener("click", (e) => {
-//   flameBar.classList.add("flame-01")
-// })
+// ------------ PAUSE ACTIVITY MENU -------------
+
+// Only visible in activities 
+// Options: Resume, Restart, Return to main menu. 
+
+const pauseMenu = document.querySelector(".pause-menu");
+const pauseMenuButton = document.querySelector(".pause-menu-button");
+const pauseMenuOptions = document.querySelector(".pause-menu-options");
+const pauseResume = document.querySelector(".pause-menu-options .resume");
+const pauseRestart = document.querySelector(".pause-menu-options .restart");
+const pauseReturn = document.querySelector(".pause-menu-options .return");
+const pauseOverlay = document.querySelector(".pause-overlay");
+
+// Show on page
+
+function showPauseMenu() {
+  pauseMenu.classList.replace("hide","show");
+}
+
+// Hide on page
+function hidePauseMenu() {
+  pauseMenu.classList.replace("show","hide");
+}
+
+// Pause Menu Button
+pauseMenuButton.addEventListener("click", (e)=> {
+  if (pauseMenuOptions.classList.contains("closed") == true) {
+    // Opens menu
+  pauseMenuOptions.classList.remove("closed");
+  pauseOverlay.classList.replace("hide", "show");
+  } else {
+    // Closes menu
+    pauseMenuOptions.classList.add("closed");
+    pauseOverlay.classList.replace("show", "hide");
+  }
+})
+
+// Resume
+pauseResume.addEventListener("click", () => {
+  pauseMenuOptions.classList.add("closed");
+  pauseOverlay.classList.replace("show", "hide");
+})
+
+// Return
+pauseReturn.addEventListener("click", (e) => {
+  pauseMenuOptions.classList.add("closed");
+  setTimeout(1);
+  transition(".page-menu", "fade");
+  pauseOverlay.classList.replace("show", "hide");
+  hidePauseMenu();
+})
 
 
 
 
 
 // --------------------------- Intro Page -------------------------------------
-import {titleAnimation} from "./title-screen.js";
 
 const startButton = document.querySelector(".start-button");
 
@@ -32,41 +82,65 @@ startButton.addEventListener("click", function (event) {
 
 const menuButton1 = document.querySelector(".menu1-button");
 menuButton1.addEventListener("click", function () {
-  transition(".page-yourPageID1", "fade");
+  transition(".page-dungeon", "fade");
+  showPauseMenu();
 });
 
 const menuButton2 = document.querySelector(".menu2-button");
 menuButton2.addEventListener("click", function () {
-  transition(".page-eye-room", "push-left");
+  transition(".page-eye-room", "fade");
+  showPauseMenu();
 });
 
 const menuButton3 = document.querySelector(".menu3-button");
 menuButton3.addEventListener("click", function () {
-  transition(".page-yourPageID3", "push-left");
+  transition(".page-mirror-hall", "push-left");
 });
+
+
+
+
+
+
+
+
+// ---------------------- 02 Eye Room --------------------------------
+
+eyeRoomScript();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // --------------------------- Other Pages -------------------------------------
 
-const page1Button = document.querySelector(".p1-button");
-page1Button.addEventListener("click", function () {
-  transition(".page-yourPageID2", "push-left");
-});
 
-const page1MenuButton = document.querySelector(".p1-menu-button");
-page1MenuButton.addEventListener("click", function () {
-  transition(".page-menu", "fade");
-});
-
-
-const page2MenuButton = document.querySelector(".p2-menu-button");
-page2MenuButton.addEventListener("click", function () {
-  transition(".page-menu", "fade");
-});
 
 const page3MenuButton = document.querySelector(".p3-menu-button");
 page3MenuButton.addEventListener("click", function () {
   transition(".page-menu", "fade");
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 // --------------------------- Transition Pages -------------------------------------
 

@@ -14,13 +14,28 @@
   /* EYE-ROOM */
   --shadows--purple: #292436;
   --walls-lilac: #AB9EB3;
+
+  /* UI Elements */
+  --ui-purple: #5A4A77;
+  --ui-black: #161616;
+
+
+  /* FONTS */
+  --primary-font: "Jolly Lodger", serif;
+  --secondary-font: "Andika", "PT Sans", sans-serif;
+
 }
 
 body {
   margin: 0;
   background-color: #333;
   color: white;
-  font-family: "PT Sans", cursive;
+  font-family: var(--secondary-font);
+}
+
+button {
+  font-family: var(--secondary-font);
+  cursor: pointer;
 }
 
 
@@ -109,8 +124,10 @@ h1 {
 
 >>> Room:
 - Place eye-lid for eye 
-- Place exhibits and their plaques/text
-- Add darkness overlay (for intro)
+- Darkness overlay
+  - Torch mask (follow cursor/drag)
+  - Plaque text glow and masks
+  - Key flame glow & mask
 
 >>> Panel:
 - Add labels
@@ -660,6 +677,22 @@ h1 {
   mix-blend-mode: color-dodge;
   top: 35px;
   left: -54px;
+
+  mask-image: linear-gradient(0deg, rgba(255,255,255,0) 25%, rgba(255,255,255,1) 75%,  rgba(255,255,255,1) 100%);
+  mask-size: 100% 150%;
+
+  animation: room-light-beam-glow 2s infinite alternate;
+}
+
+@keyframes room-light-beam-glow {
+  0% {
+    mask-position: 0 0;
+    filter: saturate(300%);
+  }
+  100% {
+    mask-position: 0 -300px;
+    filter: saturate(200%);
+  }
 }
 
 
@@ -702,7 +735,7 @@ h1 {
 
 /* Light Switch */
 
-.light-switch.off {
+.light-switch {
   top: 317px;
   left: 581px;
   width: 44px;
@@ -877,6 +910,25 @@ h1 {
 }
 
 
+/* Darkness Overlay */
+
+.eye-room-main .darkness-overlay {
+  
+  /* Torch position from pointer position */
+  --XPos: 50%;
+  --YPos: 50%;
+
+  display: block;
+  height: 100%;
+  width: 100%;
+  mix-blend-mode: multiply;
+  background-image: radial-gradient(circle 200px at var(--XPos) var(--YPos), #FFF, #1D1A21 80%, #000);
+
+  pointer-events: none; /* IMPORTANT: Mouse click/hover etc. pass through */
+
+}
+
+
 
 
 
@@ -921,13 +973,127 @@ h1 {
 
 \* =========================================================================== */
 
-.persistent-stuff {
+
+
+.persistent-stuff-container {
+
   position: absolute;
-  top: 670px;
-  left: 20px;
-  width: 400px;
-  color: white;
+  top: 0;
+  left: 0;
+  width: 1024px;
+  height: 768px;
+  box-shadow: inset 0 0 4px 1px red;
+  pointer-events: none;
 }
+
+.persistent-stuff-container > * {
+  pointer-events: auto;
+}
+
+/* PAUSE GAME MENU */
+
+.pause-menu.hide {
+  display: none;
+}
+
+.pause-menu.show {
+  display: block;
+}
+
+.pause-menu-button {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: url("/images/ui/ui-button-pause.svg") no-repeat;
+  background-size: contain;
+  border: none;
+  
+
+  width: 60px;
+  height: 60px;
+
+}
+
+.pause-menu-options {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 100%;
+  transform: translate(-50%, -50%);
+  
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 2rem;
+  width: 25%;
+
+  padding: 2rem;
+  border-radius: 0.25rem;
+
+  color: var(--ui-black);
+  background-color: var(--ui-purple);
+  box-shadow: 8px 8px 0 4px var(--ui-black);
+
+  transition: all 0.5s;
+
+}
+
+.pause-menu-options.closed {
+  opacity: 0;
+  transform: translate(-50%, 100%);
+}
+
+.pause-menu-options .ui-button {
+  padding: 1rem;
+  color: var(--ui-black);
+  background-color: var(--light-yellow);
+  border: solid 4px var(--ui-black);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  box-shadow: 4px 4px 0 2px var(--ui-black);
+}
+
+.pause-menu-options .ui-button img {
+  display: block;
+  margin: auto;
+  width: 40px;
+  height: 40px;
+}
+
+.pause-menu .pause-overlay {
+  background: #000;
+  height: 768px;
+  width: 1024px;
+}
+
+.pause-menu .pause-overlay.hide {
+  display: none;
+  opacity: 0%;
+}
+
+.pause-menu .pause-overlay.show {
+  display: block;
+  opacity: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* =========================================================================== *\
 
