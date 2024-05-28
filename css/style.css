@@ -1077,12 +1077,14 @@ h1 {
 
 /* DIALOGUE BOX */
 
+/* Container */
 .dialogue > * {
   position: absolute;
   bottom: 2rem;
   left: 2rem;
 }
 
+/* Elements container*/
 .dialogue-box {
 
   /* border: solid 1px red; */
@@ -1097,7 +1099,7 @@ h1 {
 }
 
 
-
+/* Name label */
 .dialogue-box .character-name p {
   display: inline-block;
   margin: 0 auto 0 1rem;
@@ -1113,10 +1115,30 @@ h1 {
   letter-spacing: 0.15rem;
 }
 
+
+/* Dialogue - speech */
+
 .dialogue-box .dialogue-content {
-  font-family: var(--secondary-font);
-  font-size: 1rem;
+  /* border: solid 1px green; */
+  margin: 0.75rem 6rem 0.75rem 1.5rem;
+  height: 4.5rem;
+  overflow: hidden;
+  overflow-y: scroll;
 }
+
+.dialogue-box .dialogue-content p {
+  /* border: solid 1px blue; */
+
+  margin: 0 auto;
+
+  color: var(--ui-black);
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.5rem;
+}
+
+
+/* Next button */
 
 .dialogue-box .dialogue-button-next {
   position: absolute;
@@ -1136,6 +1158,8 @@ h1 {
   
 }
 
+/* Arrow image - in pseudo element for rotating as background image */
+
 .dialogue-box .dialogue-button-next::before {
   /* opacity: 50%; */
   position: absolute;
@@ -1151,27 +1175,7 @@ h1 {
   background-size: 100% 100%;
 }
 
-.dialogue-box .dialogue-content {
-  /* border: solid 1px green; */
-  margin: 0.75rem 6rem 0.75rem 1.5rem;
-  height: 4.5rem;
-  overflow: hidden;
-  overflow-y: scroll;
-}
 
-.dialogue-box .dialogue-content p {
-  /* border: solid 1px blue; */
-
-
-  
-  max-width: 60ch;
-  margin: 0 auto;
-
-  color: var(--ui-black);
-  font-size: 1rem;
-  font-weight: normal;
-  line-height: 1.5rem;
-}
 
 
 
