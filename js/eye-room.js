@@ -1,3 +1,7 @@
+import * as dialogue from "./eye-room-dialogue.js";
+// import { showDialogue } from "./dialogue-box.js";
+
+
 function eyeRoomScript() {
     console.log("eyeRoomScript running");
 
@@ -41,6 +45,8 @@ function eyeRoomScript() {
         }
     })
 
+
+    // showDialogue(dialogue.keyStatue);
 
 
 

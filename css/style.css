@@ -125,7 +125,6 @@ h1 {
 >>> Room:
 - Place eye-lid for eye 
 - Darkness overlay
-  - Torch mask (follow cursor/drag)
   - Plaque text glow and masks
   - Key flame glow & mask
 
@@ -1077,6 +1076,7 @@ h1 {
 
 /* DIALOGUE BOX */
 
+
 .dialogue > * {
   position: absolute;
   bottom: 2rem;
@@ -1113,10 +1113,6 @@ h1 {
   letter-spacing: 0.15rem;
 }
 
-.dialogue-box .dialogue-content {
-  font-family: var(--secondary-font);
-  font-size: 1rem;
-}
 
 .dialogue-box .dialogue-button-next {
   position: absolute;
@@ -1151,19 +1147,17 @@ h1 {
   background-size: 100% 100%;
 }
 
-.dialogue-box .dialogue-content {
-  /* border: solid 1px green; */
+.dialogue-box .speech {
+  border: solid 1px green;
+
   margin: 0.75rem 6rem 0.75rem 1.5rem;
   height: 4.5rem;
   overflow: hidden;
-  overflow-y: scroll;
 }
 
-.dialogue-box .dialogue-content p {
+.dialogue-box .speech p {
   /* border: solid 1px blue; */
 
-
-  
   max-width: 60ch;
   margin: 0 auto;
 
