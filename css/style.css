@@ -658,6 +658,9 @@ h1 {
 }
 
 
+
+/* --- ROOM LIGHTING & DARKNESS OVERLAY ---- */
+
 /* Room Light */
 
 .room-light {
@@ -668,19 +671,26 @@ h1 {
 }
 
 .room-light__on {
-  opacity: 100%;
+  opacity: 0;
+}
+
+.room-light__on.show {
+  animation: flicker-on 500ms reverse 500ms;
+  animation-fill-mode: forwards;
 }
 
 .room-light__beam {
-  opacity: 100%;
+  opacity: 0;
   mix-blend-mode: color-dodge;
   top: 35px;
   left: -54px;
 
   mask-image: linear-gradient(0deg, rgba(255,255,255,0) 25%, rgba(255,255,255,1) 75%,  rgba(255,255,255,1) 100%);
   mask-size: 100% 150%;
+}
 
-  animation: room-light-beam-glow 2s infinite alternate;
+.room-light__beam.show {
+  animation: flicker-on 500ms reverse 500ms forwards, room-light-beam-glow 2s infinite alternate;
 }
 
 @keyframes room-light-beam-glow {
@@ -692,6 +702,66 @@ h1 {
     mask-position: 0 -300px;
     filter: saturate(200%);
   }
+}
+
+/* Darkness Overlay */
+
+.eye-room-main .darkness-overlay {
+  
+  /* Torch position from pointer position */
+  --XPos: 50%;
+  --YPos: 50%;
+
+  display: block;
+  height: 100%;
+  width: 100%;
+  mix-blend-mode: multiply;
+  background-image: radial-gradient(circle 200px at var(--XPos) var(--YPos), #FFF, #1D1A21 80%, #000);
+
+  pointer-events: none; /* IMPORTANT: Mouse click/hover etc. pass through */
+
+}
+
+.eye-room-main .darkness-overlay.hide {
+
+  animation: flicker-on 500ms 500ms;
+  animation-fill-mode: forwards;
+
+}
+
+
+@keyframes flicker-on {
+  0% {
+    opacity: 100%;
+  }
+
+  25% {
+    opacity: 50%;
+  }
+
+  75% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
+}
+/* ----Room lighting End----- */
+
+
+/* Light Switch */
+
+.light-switch {
+  top: 317px;
+  left: 581px;
+  width: 44px;
+  height: 62px;
+  background: url("/images/eye-room/light-switch-sprites.png") no-repeat;
+}
+
+.light-switch.on {
+  background-position-x: right;
 }
 
 
@@ -730,22 +800,6 @@ h1 {
   clip-path: inset(100% 0 0 0);
   transition: clip-path 800ms;
 }
-
-
-/* Light Switch */
-
-.light-switch {
-  top: 317px;
-  left: 581px;
-  width: 44px;
-  height: 62px;
-  background: url("/images/eye-room/light-switch-sprites.png") no-repeat;
-}
-
-.light-switch.on {
-  background-position-x: right;
-}
-
 
 /* Control Panel Sprite */
 .panel-room-sprite {
@@ -907,27 +961,6 @@ h1 {
     clip-path: inset(0 0 0 0);
   }
 }
-
-
-/* Darkness Overlay */
-
-.eye-room-main .darkness-overlay {
-  
-  /* Torch position from pointer position */
-  --XPos: 50%;
-  --YPos: 50%;
-
-  display: block;
-  height: 100%;
-  width: 100%;
-  mix-blend-mode: multiply;
-  background-image: radial-gradient(circle 200px at var(--XPos) var(--YPos), #FFF, #1D1A21 80%, #000);
-
-  pointer-events: none; /* IMPORTANT: Mouse click/hover etc. pass through */
-
-}
-
-
 
 
 

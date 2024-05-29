@@ -48,8 +48,8 @@ const nextButton = document.querySelector(".dialogue .dialogue-box .dialogue-but
 
 
 function showDialogue(dialogue) {
-    console.log(dialogue);
     console.log("*** showDialogue Running ***");
+    console.log(dialogue);
 }
 
 nextButton.addEventListener("click", nextDialogue);
