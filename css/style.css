@@ -15,6 +15,11 @@
   --shadows--purple: #292436;
   --walls-lilac: #AB9EB3;
 
+  /* Plaque glow */
+  --light-green-10: rgb(62, 99, 70);
+  --light-green-05: rgba(50, 130, 69, 0.5);
+  --light-green-00: rgba(175, 229, 188, 0);
+
   /* UI Elements */
   --ui-purple: #5A4A77;
   --ui-black: #161616;
@@ -44,6 +49,8 @@ button {
  * any content that you want to stay on screen at all times (ie sit
  * above the pages and not animate with them)
  */
+
+
 #main-container {
   width: 1024px;
   height: 768px;
@@ -650,7 +657,7 @@ h1 {
   position: absolute;
 }
 
-.eye-room-main {
+.page-eye-room .eye-room-main {
   width: 1024px;
   height: 768px;
   background: url("/images/eye-room/room-bg.png") 0 -106px no-repeat;
@@ -659,7 +666,7 @@ h1 {
 
 
 
-/* --- ROOM LIGHTING & DARKNESS OVERLAY ---- */
+/* --- ROOM LIGHTING & DARKNESS OVERLAY --- */
 
 /* Room Light */
 
@@ -684,6 +691,7 @@ h1 {
   mix-blend-mode: color-dodge;
   top: 35px;
   left: -54px;
+  pointer-events: none;
 
   mask-image: linear-gradient(0deg, rgba(255,255,255,0) 25%, rgba(255,255,255,1) 75%,  rgba(255,255,255,1) 100%);
   mask-size: 100% 150%;
@@ -705,29 +713,92 @@ h1 {
 }
 
 /* Darkness Overlay */
+/* 
 
-.eye-room-main .darkness-overlay {
+  - Multiply layer with torch light and glows around objects, added by changing size of each radial gradient with JS
+
+  - Change position and size with custom properties 
+
+  - NOTE: had to set --glow-size in JS (eye-room.js) because getPropertyValue() doesn't work on properties set in CSS, without getComputedStyle() - which is still experimental. 
+
+*/
+
+.page-eye-room .darkness-overlay {
   
-  /* Torch position from pointer position */
+  /* Torch */
   --XPos: 50%;
   --YPos: 50%;
+  --torch-size: 100px;
+
+  /* Iris */
+  --iris-x: 85px;
+  --iris-y: 323px;
+  /* --iris-size-show: 100px; */
+  --iris-size: 0px;
+
+  /* Brain */
+  --brain-x: 160px;
+  --brain-y: 470px;
+  /* --brain-size-show: 120px; */
+  --brain-size: 0px;
+  
+  /* Lens */
+  --lens-x: 235px;
+  --lens-y: 370px;
+  --lens-size-show: 50px;
+  --lens-size: 0px;
+
+  /* Retina */
+  --retina-x: 475px;
+  --retina-y: 348px;
+  /* --retina-size-show: 45px; */
+  --retina-size: 0px;
+
+  /* Key Flame */
+  --key-flame-x: 366px;
+  --key-flame-y: 435px;
+  --key-flame-size-show: 90px;
+  --key-flame-size: 0px;
 
   display: block;
   height: 100%;
   width: 100%;
   mix-blend-mode: multiply;
-  background-image: radial-gradient(circle 200px at var(--XPos) var(--YPos), #FFF, #1D1A21 80%, #000);
+
+  background: 
+
+  /* Torch */
+  radial-gradient(circle var(--torch-size) at var(--XPos) var(--YPos), rgb(155, 157, 101) 25%, rgba(252, 255, 199, 0)) , 
+
+  /* Iris */
+  radial-gradient(circle var(--iris-size) at var(--iris-x) var(--iris-y), var(--light-green-10), var(--light-green-05) 30%, var(--light-green-00) 100%) ,
+
+  /* Brain */
+  radial-gradient(circle var(--brain-size) at var(--brain-x) var(--brain-y), var(--light-green-10), var(--light-green-05) 30%, var(--light-green-00) 100%) ,
+
+  /* Lens */
+  radial-gradient(circle var(--lens-size) at var(--lens-x) var(--lens-y), var(--light-green-10), var(--light-green-05) 30%, var(--light-green-00) 100%) , 
+
+  /* Retina */
+  radial-gradient(circle var(--retina-size) at var(--retina-x) var(--retina-y), var(--light-green-10), var(--light-green-05) 30%, var(--light-green-00) 100%) , 
+
+  /* Key Flame */
+  radial-gradient(circle var(--key-flame-size) at var(--key-flame-x) var(--key-flame-y), var(--light-green-10), var(--light-green-05) 30%, var(--light-green-00) 100%)
+
+  /* Dark BG*/
+  rgba(0,0,0,1);
 
   pointer-events: none; /* IMPORTANT: Mouse click/hover etc. pass through */
 
 }
 
-.eye-room-main .darkness-overlay.hide {
+.page-eye-room .darkness-overlay.hide {
 
   animation: flicker-on 500ms 500ms;
   animation-fill-mode: forwards;
 
 }
+
 
 
 @keyframes flicker-on {
@@ -747,8 +818,9 @@ h1 {
     opacity: 0%;
   }
 }
-/* ----Room lighting End----- */
 
+
+/* --- ROOM SPRITES --- */
 
 /* Light Switch */
 
@@ -779,7 +851,6 @@ h1 {
   background-position-x: 103.5px;
 }
 
-
 /* Key Sculpture */
 
 .key-sculpture {
@@ -809,6 +880,9 @@ h1 {
   height: 182px;
   background: url("/images/eye-room/panel-room-sprite.png") no-repeat;
 }
+
+
+/* --- EXHIBITS --- */
 
 /* Retina */
 .eye-room-main .retina {
@@ -868,7 +942,7 @@ h1 {
 
 /* Brain */
 
-.eye-room-main .brain-exhibit {
+.eye-room-main .brain {
   top: 366px;
   left: 24px;
   width: 164px;
@@ -882,7 +956,7 @@ h1 {
   background: url("/images/eye-room/brain-jar.png") no-repeat;
 }
 
-.eye-room-main .brain-jar .brain {
+.eye-room-main .brain-jar .brain-floating {
   top: 57px;
   left: 28px;
   width: 63px;
@@ -965,7 +1039,7 @@ h1 {
 
 
 
-/* CONTROL PANEL VIEW */
+/* --- CONTROL PANEL VIEW --- */
 
 .panel-main {
   display: none;
@@ -1220,6 +1294,16 @@ h1 {
 
 
 
+
+
+
+
+
+
+
+
+
+/* =========== Ant's code ==========*/
 
 /* =========================================================================== *\
 

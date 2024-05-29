@@ -1,51 +1,138 @@
+/* ----- TO DO ------
+
+- Declare all sprites
+
+- Opening cutscene animation
+
+- GAME LOGIC 
+    ** Stage 1 **
+    Explore room
+    - Read all exhibits
+    - Flame indicator logic
+        - DarkOverlay mask
+        - Glow
+
+    - Exhibit read status and plaque writing animation
+    
+    ** Stage 2 **
+    Drag and drop eye-panel
+    - Back button
+    - Drag and drop labels 
+    - Display animation
+    - Brain dial
+*/
+
+
+
 import * as dialogue from "./eye-room-dialogue.js";
 import { showDialogue } from "./dialogue-box.js";
+
+
 
 
 function eyeRoomScript() {
     console.log("eye-room.js running");
 
     const eyeRoomPage = document.querySelector(".page-eye-room");
-    const darkOverlay = document.querySelector(".eye-room-main .darkness-overlay");
+    const darkOverlay = document.querySelector(".page-eye-room .darkness-overlay");
 
+    // Scenes/views shortcut
+    const sceneRoom = ".page-eye-room .eye-room-main";
+    const scenePanel = ".page-eye-room .panel-main";
+
+    // --- Room Sprites ---
     const lightSwitch = document.querySelector(".light-switch");
     const roomLightOn = document.querySelector(".room-light__on");
     const roomLightBeam = document.querySelector(".room-light__beam");
 
+    // --- Exhibits ---
+    
+    // Retina
+    const roomRetina = document.querySelector(`${sceneRoom} .retina`);
+    roomRetina.plaque = document.querySelector(`${sceneRoom} .retina .plaque-text`);
+    roomRetina.glowName = "retina";
+    roomRetina.glowSize = "45px";
+    
+    // Iris
+    const roomIris = document.querySelector(`${sceneRoom} .iris`);
+    roomIris.plaque = document.querySelector(`${sceneRoom} .iris .plaque-text`);
+    roomIris.glowName = "iris";
+    roomIris.glowSize = "100px";
 
-    // Page state - major events for activity
+    // Lens
+    const roomLens = document.querySelector(`${sceneRoom} .lens`);
+    roomLens.plaque = document.querySelector(`${sceneRoom} .lens .plaque-text`);
+    roomLens.glowName = "lens";
+    roomLens.glowSize = "50px";
+    
+    // Brain
+    const roomBrain = document.querySelector(`${sceneRoom} .brain`);
+    roomBrain.plaque = document.querySelector(`${sceneRoom} .brain .brain-plaque .plaque-text`);
+    roomBrain.glowName = "brain";
+    roomBrain.glowSize = "120px";
+
+
+    // --- Page state --- 
+    // Track events for activity
     const pageState = {
         
-        "scene": "room", 
-        "lightOn": false ,
-        "exhibitsComplete": false
+        "scene": "room",
+        "exhibitsComplete": false,
+        "exhibits": [
+            roomBrain,
+            roomIris,
+            roomLens,
+            roomRetina
+        ]
     }
 
-    // Event listeners
 
+    // pageState.exhibitsComplete = true;
+
+
+    // ----- MAIN SCRIPT -----
     eyeRoomPage.addEventListener("pointermove", updateTorchLight);
 
     eyeRoomPage.addEventListener("pointerdown", updateTorchLight);
 
     lightSwitch.addEventListener("click", updateLightSwitch);
 
-    lightSwitch.addEventListener("click", updateDarkOverlay);
+    lightSwitch.addEventListener("click", removeDarkOverlay);
+
+    // Add all click handlers to exhibits
+    pageState.exhibits.forEach(function(i) {
+        i.addEventListener("click", function () {
+            exhibitHandler(this);
+        })
+    })
 
 
-    // Main script
-    showDialogue(dialogue.keyStatue);
 
-    pageState.exhibitsComplete = true;
+    // ------ FUNCTIONS -------
+    function exhibitHandler (exhibit) {
+        console.log("*** exhibitHandler running ***");
+        console.log(exhibit);
 
+        const hasRead = exhibit.plaque.classList.contains("show");
+
+        if(hasRead === false) {
+            activatePlaque(exhibit);
+        }
+
+        // run showDialogue
+        console.log("placeholder: runShowDialogue")
+
+        function activatePlaque (exhibit) {
+            console.log("*** activatePlaque running ***");
     
+            exhibit.plaque.classList.add("show");
+            setTimeout(()=> {
+                darkOverlay.style.setProperty(`--${exhibit.glowName}-size`, exhibit.glowSize);
+            }, 1000);
+        }
+    }
 
 
-
-
-
-
-
-    
     function checkExhibitsComplete (value) {
         pageState.exhibitsComplete = value;
 
@@ -71,19 +158,16 @@ function eyeRoomScript() {
 
     }
 
-    function updateDarkOverlay() {
-        if (pageState.exhibitsComplete === true) {
-            darkOverlay.classList.add("hide");
-            roomLightOn.classList.add("show");
-            roomLightBeam.classList.add("show");
+    function removeDarkOverlay() {
 
-            eyeRoomPage.removeEventListener("pointermove", updateTorchLight);
-            eyeRoomPage.removeEventListener("pointerdown", updateTorchLight);
-            pageState.lightOn = true;
+        darkOverlay.classList.add("hide");
+        roomLightOn.classList.add("show");
+        roomLightBeam.classList.add("show");
 
-        } else if (pageState.exhibitsComplete === false) {
-            console.log("Exhibits not complete");
-        }
+        eyeRoomPage.removeEventListener("pointermove", updateTorchLight);
+        eyeRoomPage.removeEventListener("pointerdown", updateTorchLight);
+        pageState.lightOn = true;
+
     }
 
 
@@ -99,17 +183,6 @@ function eyeRoomScript() {
         }
     }
 
-
-
-  
-
-
-
-
-
-
-
-    //All exhibits checked? Enable light switch.
 }
 
 export {eyeRoomScript};
