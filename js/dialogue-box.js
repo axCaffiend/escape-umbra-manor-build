@@ -4,14 +4,14 @@
 Script object structure:
 
 [
-    {
+    [
         character: NAME , 
         lines: [
             "Line 1 of dialogue" , 
             "Line 2 of dialogue **bold text**" ,
             "Line 3 more speech bla bla..."
         ]
-    }
+    ]
 ]
 
 --- SCRIPT FUNCTIONS ---

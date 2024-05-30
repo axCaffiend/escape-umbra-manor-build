@@ -115,13 +115,20 @@ function eyeRoomScript() {
 
 
     // ----- MAIN SCRIPT -----
+
+    // Dark overlay
     eyeRoomPage.addEventListener("pointermove", updateTorchLight);
 
     eyeRoomPage.addEventListener("pointerdown", updateTorchLight);
 
     lightSwitch.addEventListener("click", updateLightSwitch);
 
-    lightSwitch.addEventListener("click", removeDarkOverlay);
+    
+
+    if (pageState.exhibitsComplete) {
+        lightSwitch.addEventListener("click", removeDarkOverlay);
+    }
+
 
     // Add all click handlers to exhibits
     pageState.exhibits.forEach(function(i) {
@@ -129,6 +136,10 @@ function eyeRoomScript() {
             exhibitHandler(this);
         })
     })
+
+    // Intro dialogue
+
+    
 
     
 
@@ -143,12 +154,13 @@ function eyeRoomScript() {
 
         const hasRead = exhibit.plaque.classList.contains("show");
 
+        // run showDialogue
+        console.log("placeholder: runShowDialogue")
+
         if(hasRead === false) {
             activatePlaque(exhibit);
         }
 
-        // run showDialogue
-        console.log("placeholder: runShowDialogue")
 
         function activatePlaque (exhibit) {
             console.log("*** activatePlaque running ***");
