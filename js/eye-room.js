@@ -171,23 +171,15 @@ function eyeRoomScript() {
     // --- Dark Overlay and torch effect ---
     
     function updateTorchLight (event) {
-        // console.log("updateTorchLight running")
-
-        // xPos = clientX when clientWidth=1024px
-        // clientWidth - 1024 = 0
 
         // Get pointer position
         let xPos = event.clientX;
         let yPos = event.clientY;
 
+        // Removes X offset when window is wider than game  screen
         if (document.documentElement.clientWidth > 1024) {
             xPos = event.clientX - ((document.documentElement.clientWidth - 1024) / 2);
         }
-
-        console.log(`xPos: ${xPos}`);
-        console.log(document.documentElement.clientWidth);
-
-        // console.log(`yPos: ${yPos}`);
 
         // Set radial gradient position via custom properties
         darkOverlay.style.setProperty("--XPos", xPos + "px");
