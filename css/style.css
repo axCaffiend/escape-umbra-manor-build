@@ -650,6 +650,7 @@ h1 {
 \* =========================================================================== */
 
 .page-eye-room {
+  width: 1024px;
   height: 768px;
 }
 
@@ -761,8 +762,8 @@ h1 {
   --key-flame-size: 0px;
 
   display: block;
-  height: 100%;
-  width: 100%;
+  height: 768px;
+  width: 1024px;
   mix-blend-mode: multiply;
 
   background: 
@@ -793,13 +794,9 @@ h1 {
 }
 
 .page-eye-room .darkness-overlay.hide {
-
   animation: flicker-on 500ms 500ms;
   animation-fill-mode: forwards;
-
 }
-
-
 
 @keyframes flicker-on {
   0% {

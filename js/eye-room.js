@@ -1,8 +1,26 @@
 /* ----- TO DO ------
 
 - Declare all sprites
+    ** Room **
+    - Door
+    - Board
+    - Eye
+    - key flame
+
+    **Panel**
+    - Panel container (scene)
+    - Brain dial
+    - Labels
+    - Label gaps
+    - Label numbers
+    - Brain display
+    - Back button
+    - Torch flame
+
 
 - Opening cutscene animation
+
+- SHOW DIALOGUE
 
 - GAME LOGIC 
     ** Stage 1 **
@@ -12,7 +30,7 @@
         - DarkOverlay mask
         - Glow
 
-    - Exhibit read status and plaque writing animation
+    - Exhibit read 
     
     ** Stage 2 **
     Drag and drop eye-panel
@@ -28,8 +46,6 @@ import * as dialogue from "./eye-room-dialogue.js";
 import { showDialogue } from "./dialogue-box.js";
 
 
-
-
 function eyeRoomScript() {
     console.log("eye-room.js running");
 
@@ -41,9 +57,17 @@ function eyeRoomScript() {
     const scenePanel = ".page-eye-room .panel-main";
 
     // --- Room Sprites ---
+    
+    // Light switch
     const lightSwitch = document.querySelector(".light-switch");
+    
+    // Room light
     const roomLightOn = document.querySelector(".room-light__on");
     const roomLightBeam = document.querySelector(".room-light__beam");
+
+    // Key Sculpture
+    const keySculpture = document.querySelector(`${sceneRoom} .key-sculpture`);
+    const keySculptureFlame = document.querySelector(`${sceneRoom} .key-sculpture .flame`);
 
     // --- Exhibits ---
     
@@ -106,6 +130,10 @@ function eyeRoomScript() {
         })
     })
 
+    
+
+
+
 
 
     // ------ FUNCTIONS -------
@@ -145,11 +173,20 @@ function eyeRoomScript() {
     function updateTorchLight (event) {
         // console.log("updateTorchLight running")
 
+        // xPos = clientX when clientWidth=1024px
+        // clientWidth - 1024 = 0
+
         // Get pointer position
         let xPos = event.clientX;
-        // console.log(`xPos: ${xPos}`);
-
         let yPos = event.clientY;
+
+        if (document.documentElement.clientWidth > 1024) {
+            xPos = event.clientX - ((document.documentElement.clientWidth - 1024) / 2);
+        }
+
+        console.log(`xPos: ${xPos}`);
+        console.log(document.documentElement.clientWidth);
+
         // console.log(`yPos: ${yPos}`);
 
         // Set radial gradient position via custom properties
