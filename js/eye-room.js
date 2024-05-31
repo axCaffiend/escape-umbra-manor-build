@@ -67,6 +67,8 @@ function eyeRoomScript() {
 
     // Key Sculpture
     const keySculpture = document.querySelector(`${sceneRoom} .key-sculpture`);
+    keySculpture.dialogue = dialogue.keyStatue;
+
     const keySculptureFlame = document.querySelector(`${sceneRoom} .key-sculpture .flame`);
 
     // --- Exhibits ---
@@ -76,6 +78,7 @@ function eyeRoomScript() {
     roomRetina.plaque = document.querySelector(`${sceneRoom} .retina .plaque-text`);
     roomRetina.glowName = "retina";
     roomRetina.glowSize = "45px";
+    roomRetina.dialogue = dialogue.retina;
     
     // Iris
     const roomIris = document.querySelector(`${sceneRoom} .iris`);
@@ -111,20 +114,19 @@ function eyeRoomScript() {
     }
 
 
-    pageState.exhibitsComplete = true;
+    // pageState.exhibitsComplete = true;
 
-
+    
     // ----- MAIN SCRIPT -----
 
-    // Dark overlay
+    //Add Dark overlay
     eyeRoomPage.addEventListener("pointermove", updateTorchLight);
 
     eyeRoomPage.addEventListener("pointerdown", updateTorchLight);
 
-    lightSwitch.addEventListener("click", updateLightSwitch);
-
     
 
+    
     if (pageState.exhibitsComplete) {
         lightSwitch.addEventListener("click", removeDarkOverlay);
     }
@@ -136,6 +138,13 @@ function eyeRoomScript() {
             exhibitHandler(this);
         })
     })
+
+    // Add click handlers to room sprites
+    keySculpture.addEventListener("click", ()=> {
+        showDialogue(keySculpture.dialogue.defaultText)
+    })
+
+    lightSwitch.addEventListener("click", updateLightSwitch);
 
 
     // Intro dialogue
@@ -153,13 +162,15 @@ function eyeRoomScript() {
 
     // ------ FUNCTIONS -------
     function exhibitHandler (exhibit) {
-        console.log("*** exhibitHandler running ***");
-        console.log(exhibit);
+        console.log(`*** exhibitHandler running for '${exhibit.classList}'***`);
 
         const hasRead = exhibit.plaque.classList.contains("show");
 
-        // run showDialogue
-        showDialogue(dialogue.retina);
+        // show exhibit.dialogue.description
+
+        // showDialogue(exhibit.dialogue.defaultText);
+
+        showDialogue(exhibit.dialogue.description);
 
         if(hasRead === false) {
             activatePlaque(exhibit);

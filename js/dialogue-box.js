@@ -38,14 +38,7 @@
 - show dialogue box while running dialogue
 - hide dialogue box when dialogue finished
 
-- parse Script object into array of html elements
-
-- update the dialogue box to first item in parsedScript array
-
-    - update character
-    - update line of dialogue showing
-
-- next - show next item in parsedScript
+- Takes in text from an array of [character, speech] pairs
 
 
 
@@ -63,20 +56,56 @@
 
 
 export function showDialogue(dialogue) {
-    console.log(`*** showDialogue Running: ${dialogue.name}***`);
+    console.log(`*** showDialogue Running: ${dialogue}***`);
+    if (dialogue instanceof Array) {
+        console.log("input is an array");
+    } else {
+        console.log("incorrect input - not an array");
+    }
 
     const dialogueContainer = document.querySelector(".dialogue");
     const dialogueBox = document.querySelector(".dialogue .dialogue-box");
     const nameBox = document.querySelector(".dialogue .dialogue-box .character-name");
+    const nameLabel = document.querySelector(".dialogue .dialogue-box .character-name p");
     const speechBox = document.querySelector(".dialogue .dialogue-box .speech");
+    const speechText = document.querySelector(".dialogue .dialogue-box .speech p");
     const nextButton = document.querySelector(".dialogue .dialogue-box .dialogue-button-next");
 
-    nextButton.addEventListener("click", nextDialogue);
+    let lineIndex = 0;
+    // Increase lineIndex every time next is pressed, until it's greater than length of array
+
+    console.log("lineIndex: "+ lineIndex);
+    console.log("dialogue.length: " + dialogue.length);
 
     show();
+    nameLabel.textContent = dialogue[lineIndex][0];
+    speechText.textContent = dialogue[lineIndex][1];
+
+    nextButton.addEventListener("click", function () {
+        console.log("\n next button clicked");
+        console.log("lineIndex: "+ lineIndex);
+        console.log("dialogue.length: " + dialogue.length);
+
+        if (lineIndex <= (dialogue.length -1)) {
+            lineIndex ++;
+        }
+    })
+    
+    nextButton.addEventListener("click", updateDialogue);
 
 
-    // Animate in
+
+    function updateDialogue () {
+        if (lineIndex > (dialogue.length -1)) {
+            nextButton.removeEventListener("click", updateDialogue);
+            hide();
+        } else {
+            nameLabel.textContent = dialogue[lineIndex][0];
+            speechText.textContent = dialogue[lineIndex][1];
+        }
+    }
+
+
     function show() {
         dialogueContainer.classList.replace("hide", "show");
     }
@@ -84,11 +113,5 @@ export function showDialogue(dialogue) {
     function hide() {
         dialogueContainer.classList.replace("show","hide"); 
     }
-    
-
-    function nextDialogue() {
-        nextButton.style.border = "solid 1px red";
-    }
-
     
 }

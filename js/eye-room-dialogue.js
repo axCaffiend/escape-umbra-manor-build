@@ -1,8 +1,8 @@
 export const keyStatue = {
     
-    // Default dialogue
+    // defaultText dialogue
     "name" : "Key Statue",
-    "default" : [
+    "defaultText" : [
         [
             "Luca" , 
             "It's a key - but it's way too heavy for me to lift...and there **isn't a keyhole** in the door."
@@ -17,7 +17,7 @@ export const keyStatue = {
 
 export const retina = {
     "name": "Retina Exhibit",
-    "default": [
+    "defaultText": [
         [
             "Luca", "...this is a weird painting - no wait, it's a photo..?"
         ] ,
