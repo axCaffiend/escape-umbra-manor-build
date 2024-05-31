@@ -1,18 +1,37 @@
 /*
+============ NOTES ================
 
+--- DIALOGUE OBJECT STRUCTURE ---
 
-Script object structure:
+{
+    
+    // name - for naming dialogue object
 
-[
-    [
-        character: NAME , 
-        lines: [
-            "Line 1 of dialogue" , 
-            "Line 2 of dialogue **bold text**" ,
-            "Line 3 more speech bla bla..."
-        ]
+    name: "name of dialogue", 
+    
+    // default - for dialogue / on first interaction
+
+    "default" : [
+        [
+            "Character Name" , 
+            "Dialogue sentence 01 **some bold text**."
+         ] ,
+
+        [
+            " " , 
+            "Another sentence 02 **more bold text**"
+        ] ,
+        ["Different Name" , "Sentence 03 of dialogue."] ,
+        ...
+    ] ,
+
+    // Dialogue for other states,depending on tasks completed etc.
+
+    "new-section" : [
+        ["Character Name", "dialogue..."],
+        [" ", "more dialogue....."]
     ]
-]
+}
 
 --- SCRIPT FUNCTIONS ---
 
@@ -36,26 +55,40 @@ Script object structure:
     - lineItemIndex = 0
 - dialogueRunning = true/false
 
-
+============= NOTES END ================
 */
 
 
-const dialogueContainer = document.querySelector(".dialogue");
-const dialogueBox = document.querySelector(".dialogue .dialogue-box");
-const nameBox = document.querySelector(".dialogue .dialogue-box .character-name");
-const speechBox = document.querySelector(".dialogue .dialogue-box .speech");
-const nextButton = document.querySelector(".dialogue .dialogue-box .dialogue-button-next");
 
 
-function showDialogue(dialogue) {
-    console.log("*** showDialogue Running ***");
-    console.log(dialogue);
+
+export function showDialogue(dialogue) {
+    console.log(`*** showDialogue Running: ${dialogue.name}***`);
+
+    const dialogueContainer = document.querySelector(".dialogue");
+    const dialogueBox = document.querySelector(".dialogue .dialogue-box");
+    const nameBox = document.querySelector(".dialogue .dialogue-box .character-name");
+    const speechBox = document.querySelector(".dialogue .dialogue-box .speech");
+    const nextButton = document.querySelector(".dialogue .dialogue-box .dialogue-button-next");
+
+    nextButton.addEventListener("click", nextDialogue);
+
+    show();
+
+
+    // Animate in
+    function show() {
+        dialogueContainer.classList.replace("hide", "show");
+    }
+
+    function hide() {
+        dialogueContainer.classList.replace("show","hide"); 
+    }
+    
+
+    function nextDialogue() {
+        nextButton.style.border = "solid 1px red";
+    }
+
+    
 }
-
-nextButton.addEventListener("click", nextDialogue);
-
-function nextDialogue() {
-    nextButton.style.border = "solid 1px red";
-}
-
-export {showDialogue};

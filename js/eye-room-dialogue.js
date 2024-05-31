@@ -1,6 +1,7 @@
 export const keyStatue = {
     
     // Default dialogue
+    "name" : "Key Statue",
     "default" : [
         [
             "Luca" , 
@@ -15,7 +16,7 @@ export const keyStatue = {
 }
 
 export const retina = {
-    // Default
+    "name": "Retina Exhibit",
     "default": [
         [
             "Luca", "...this is a weird painting - no wait, it's a photo..?"
@@ -32,18 +33,22 @@ export const retina = {
         ] ,
 
         [
+            " ",
             "It is made up of special cells which send signals along the **optic nerve** to the brain when they **detect light**"
         ] ,
 
         [
+            " ",
             "There are two types of these specials cells - which are called **rods** and **cones**."
         ] ,
 
         [
+            " ",
             "**Rods** are for detecting light and dark, and all the shades of grey in between. They help us to see better when it's dark!"
         ] ,
 
         [
+            " ",
             "**Cones** are for detecting **colours** and can sense red, green or blue light - which mix together to make all the colours of the rainbow!"
         ]
     ]

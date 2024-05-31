@@ -111,7 +111,7 @@ function eyeRoomScript() {
     }
 
 
-    // pageState.exhibitsComplete = true;
+    pageState.exhibitsComplete = true;
 
 
     // ----- MAIN SCRIPT -----
@@ -137,7 +137,11 @@ function eyeRoomScript() {
         })
     })
 
+
     // Intro dialogue
+
+    // 
+    
 
     
 
@@ -155,7 +159,7 @@ function eyeRoomScript() {
         const hasRead = exhibit.plaque.classList.contains("show");
 
         // run showDialogue
-        console.log("placeholder: runShowDialogue")
+        showDialogue(dialogue.retina);
 
         if(hasRead === false) {
             activatePlaque(exhibit);
@@ -173,11 +177,6 @@ function eyeRoomScript() {
     }
 
 
-    function checkExhibitsComplete (value) {
-        pageState.exhibitsComplete = value;
-
-        console.log(`exhibitsComplete : ${pageState.exhibitsComplete}`);
-    }
  
 
     // --- Dark Overlay and torch effect ---
