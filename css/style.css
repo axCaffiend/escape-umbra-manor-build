@@ -1257,7 +1257,7 @@ h1 {
 
 .dialogue-box .speech p {
   /* border: solid 1px blue; */
-
+  display: none;
   max-width: 60ch;
   margin: 0 auto;
 
@@ -1266,6 +1266,11 @@ h1 {
   font-weight: normal;
   line-height: 1.5rem;
 }
+
+.dialogue-box .speech p.show {
+  display: block;
+}
+
 
 
 

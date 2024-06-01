@@ -152,11 +152,6 @@ function eyeRoomScript() {
     // 
     
 
-    
-
-    
-
-
 
 
 
@@ -168,9 +163,7 @@ function eyeRoomScript() {
 
         // show exhibit.dialogue.description
 
-        // showDialogue(exhibit.dialogue.defaultText);
-
-        showDialogue(exhibit.dialogue.description);
+        showDialogue(exhibit.dialogue.defaultText);
 
         if(hasRead === false) {
             activatePlaque(exhibit);

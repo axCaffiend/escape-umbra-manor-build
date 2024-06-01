@@ -1,6 +1,8 @@
 /*
 ============ NOTES ================
 
+TO DO: @Line 138
+
 --- DIALOGUE OBJECT STRUCTURE ---
 
 {
@@ -68,7 +70,7 @@ export function showDialogue(dialogue) {
     const nameBox = document.querySelector(".dialogue .dialogue-box .character-name");
     const nameLabel = document.querySelector(".dialogue .dialogue-box .character-name p");
     const speechBox = document.querySelector(".dialogue .dialogue-box .speech");
-    const speechText = document.querySelector(".dialogue .dialogue-box .speech p");
+    
     const nextButton = document.querySelector(".dialogue .dialogue-box .dialogue-button-next");
 
     let lineIndex = 0;
@@ -78,8 +80,15 @@ export function showDialogue(dialogue) {
     console.log("dialogue.length: " + dialogue.length);
 
     show();
-    nameLabel.textContent = dialogue[lineIndex][0];
-    speechText.textContent = dialogue[lineIndex][1];
+
+    // Convert dialogue array to [["name", <p>speech text <b>bold text</b> more text</p>] , ...]
+    const dialogueFormatted = dialogue.map(formatText);
+    
+    dialogueFormatted.forEach((i)=>{
+        speechBox.appendChild(i[1]);
+    })
+
+    updateDialogue();
 
     nextButton.addEventListener("click", function () {
         console.log("\n next button clicked");
@@ -90,18 +99,56 @@ export function showDialogue(dialogue) {
             lineIndex ++;
         }
     })
-    
+
     nextButton.addEventListener("click", updateDialogue);
 
+    function formatText (dItem) {
+        const bold = /\*\*/gim; //reg ex for '**'
+        let name = dItem[0];
+        let speech = dItem[1].split(bold);
+        const speechEl = document.createElement("p");
+        
+        // Add text to <p> element for speech
+        speech.forEach(function(text, index) {
+            
+            // Add b element with text content to speechEl <p>
+            if (index % 2 !== 0) {
 
+                // Create b tag
+                let bText = document.createElement("b");
+
+                bText.textContent = text;
+                
+                speechEl.appendChild(bText);
+
+            // Add textNode to pLines
+            } else {
+
+                speechEl.appendChild(document.createTextNode(text));
+
+            }
+        })
+
+        console.log("Formatting speech... " + name + speechEl);
+
+        return [name, speechEl]
+
+    }
+
+    // UPDATE TO WORK IF CLICKED MULTIPLE TIMES - REMOVE SHOW AT END
 
     function updateDialogue () {
-        if (lineIndex > (dialogue.length -1)) {
+        if (lineIndex > (dialogueFormatted.length -1)) {
+            
             nextButton.removeEventListener("click", updateDialogue);
             hide();
         } else {
-            nameLabel.textContent = dialogue[lineIndex][0];
-            speechText.textContent = dialogue[lineIndex][1];
+            nameLabel.textContent = dialogueFormatted[lineIndex][0];
+            const currentLine = speechBox.children[lineIndex];
+            currentLine.classList.add("show");
+            if (lineIndex !== 0) {
+                currentLine.previousElementSibling.classList.remove("show");
+            }
         }
     }
 
