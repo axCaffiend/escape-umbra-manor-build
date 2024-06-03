@@ -43,7 +43,7 @@
 
 
 import * as dialogue from "./eye-room-dialogue.js";
-import { showDialogue } from "./dialogue-box.js";
+import { showDialogue } from "./main-script.js";
 
 
 function eyeRoomScript() {

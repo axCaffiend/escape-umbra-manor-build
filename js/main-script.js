@@ -66,6 +66,131 @@ pauseReturn.addEventListener("click", (e) => {
 })
 
 
+// ------------ DIALOGUE BOX ------------
+const dialogueContainer = document.querySelector(".dialogue");
+const dialogueBox = document.querySelector(".dialogue .dialogue-box");
+const nameBox = document.querySelector(".dialogue .dialogue-box .character-name");
+const nameLabel = document.querySelector(".dialogue .dialogue-box .character-name p");
+const speechBox = document.querySelector(".dialogue .dialogue-box .speech");
+
+const nextButton = document.querySelector(".dialogue .dialogue-box .dialogue-button-next");
+
+let lineIndex = 0;
+
+nextButton.addEventListener("click", function () {
+  console.log("\n next button clicked");
+  console.log("lineIndex: "+ lineIndex);
+  console.log("Current dialogue length: " + speechBox.children.length)
+
+  if (lineIndex <= (speechBox.children.length -1)) {
+      lineIndex ++;
+  }
+})
+
+
+export function showDialogue(dialogue) {
+  console.log(`*** showDialogue Running: ${dialogue}***`);
+  if (dialogue instanceof Array) {
+      console.log("input is an array");
+  } else {
+      console.log("incorrect input - not an array");
+  }
+
+  lineIndex = 0;
+  // Increase lineIndex every time next is pressed, until it's greater than length of array
+
+  console.log("lineIndex: "+ lineIndex);
+  console.log("dialogue.length: " + dialogue.length);
+
+  show();
+
+  // Convert dialogue array to [["name", <p>speech text <b>bold text</b> more text</p>] , ...]
+  const dialogueFormatted = dialogue.map(formatText);
+  
+  dialogueFormatted.forEach((i)=>{
+      speechBox.appendChild(i[1]);
+  })
+
+  updateDialogue();
+
+  nextButton.addEventListener("click", updateDialogue);
+
+  function formatText (dItem) {
+      const bold = /\*\*/gim; //reg ex for '**'
+      let name = dItem[0];
+      let speech = dItem[1].split(bold);
+      const speechEl = document.createElement("p");
+      
+      // Add text to <p> element for speech
+      speech.forEach(function(text, index) {
+          
+          // Add b element with text content to speechEl <p>
+          if (index % 2 !== 0) {
+
+              // Create b tag
+              let bText = document.createElement("b");
+
+              bText.textContent = text;
+              
+              speechEl.appendChild(bText);
+
+          // Add textNode to pLines
+          } else {
+
+              speechEl.appendChild(document.createTextNode(text));
+
+          }
+      })
+
+      console.log("Formatting speech... " + name + speechEl);
+
+      return [name, speechEl]
+
+  }
+
+  function updateDialogue () {
+    console.log("*** updateDialogue running ***")
+
+    console.log()
+      if (lineIndex > (dialogueFormatted.length -1)) {
+          
+          let deleteSpeech = speechBox.children
+          console.log(`${deleteSpeech.length} elements found to delete.`)
+
+          // Changed to while loop. For loop did not work with live HTMLcollection - did not delete everything
+          while(deleteSpeech.length > 0) {
+              console.log("deleting" + deleteSpeech[0])
+              deleteSpeech[0].remove();
+          }
+
+          console.log("Speechbox cleared");
+
+          nextButton.removeEventListener("click", updateDialogue);
+          hide();
+
+      } else {
+          nameLabel.textContent = dialogueFormatted[lineIndex][0];
+          const currentLine = speechBox.children[lineIndex];
+          currentLine.classList.add("show");
+          if (lineIndex !== 0) {
+              currentLine.previousElementSibling.classList.remove("show");
+          }
+      }
+  }
+
+
+  function show() {
+      dialogueContainer.classList.replace("hide", "show");
+  }
+
+  function hide() {
+      dialogueContainer.classList.replace("show","hide"); 
+  }
+  
+}
+
+
+
 
 
 

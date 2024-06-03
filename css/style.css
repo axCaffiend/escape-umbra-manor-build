@@ -1181,13 +1181,12 @@ h1 {
 /* DIALOGUE BOX */
 
 .dialogue {
-  /* border: solid 1px blue; */
+  border: solid 1px blue;
   
   display: block;
   position: absolute;
-  bottom: 0;
   width: 100%;
-  height: 188px;
+  height: 100%;
   transition: all 500ms;
 }
 
@@ -1209,10 +1208,10 @@ h1 {
 
 /* Elements container*/
 .dialogue-box {
-  /* border: solid 1px red; */
+  border: solid 1px red;
 
-  position: relative;
-  top: 0;
+  position: absolute;
+  bottom: 2rem;
   left: 2rem;
   color: var(--ui-black);
   width: 668px;
@@ -1252,12 +1251,12 @@ h1 {
 
   margin: 0.75rem 6rem 0.75rem 1.5rem;
   height: 4.5rem;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .dialogue-box .speech p {
   /* border: solid 1px blue; */
-  display: none;
+  display: block;
   max-width: 60ch;
   margin: 0 auto;
 
@@ -1269,6 +1268,7 @@ h1 {
 
 .dialogue-box .speech p.show {
   display: block;
+  color: red;
 }
 
 
