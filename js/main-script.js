@@ -66,7 +66,17 @@ pauseReturn.addEventListener("click", (e) => {
 })
 
 
+
+
 // ------------ DIALOGUE BOX ------------
+/* 
+  - Persistent element 
+  - Shows and hides when showDialogue() called in different activity scripts
+  - Takes in an array of pairs of strings [[character-name, their dialogue]...]
+  - dialogue.objects are imported from <activity-name>-dialogue.js file
+  - Converts the dialogue array text to html elements and adds to 
+*/
+
 const dialogueContainer = document.querySelector(".dialogue");
 const dialogueBox = document.querySelector(".dialogue .dialogue-box");
 const nameBox = document.querySelector(".dialogue .dialogue-box .character-name");

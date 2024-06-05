@@ -60,6 +60,7 @@ function eyeRoomScript() {
     
     // Light switch
     const lightSwitch = document.querySelector(".light-switch");
+    lightSwitch.dialogue = dialogue.lightSwitchText
     
     // Room light
     const roomLightOn = document.querySelector(".room-light__on");
@@ -85,18 +86,21 @@ function eyeRoomScript() {
     roomIris.plaque = document.querySelector(`${sceneRoom} .iris .plaque-text`);
     roomIris.glowName = "iris";
     roomIris.glowSize = "100px";
+    roomIris.dialogue = dialogue.iris;
 
     // Lens
     const roomLens = document.querySelector(`${sceneRoom} .lens`);
     roomLens.plaque = document.querySelector(`${sceneRoom} .lens .plaque-text`);
     roomLens.glowName = "lens";
     roomLens.glowSize = "50px";
+    roomLens.dialogue = dialogue.lens;
     
     // Brain
     const roomBrain = document.querySelector(`${sceneRoom} .brain`);
     roomBrain.plaque = document.querySelector(`${sceneRoom} .brain .brain-plaque .plaque-text`);
     roomBrain.glowName = "brain";
     roomBrain.glowSize = "120px";
+    roomBrain.dialogue = dialogue.brain;
 
 
     // --- Page state --- 

@@ -1,3 +1,38 @@
+// ------------ ROOM OBJECTS ------------
+
+export const lightSwitchText = {
+    
+    // defaultText dialogue
+    "name" : "Light switch",
+    "defaultText" : [
+        [
+            "Luca" , 
+            "<line 01>"
+         ]
+    ] ,
+    "onText": [
+        [
+            "Luca" , 
+            "<line 02>"
+        ]
+    ]
+}
+
+export const roomLight = {
+    "name" : "Room Light",
+    "defaultText": [
+        [
+            "Luca" , "<default Text line>"
+        ]
+    ] ,
+    "onText": [
+        [
+            "Luca" , "<onText line>"
+        ]
+    ]
+}
+
+
 export const keyStatue = {
     
     // defaultText dialogue
@@ -14,6 +49,41 @@ export const keyStatue = {
         ]
     ] 
 }
+
+
+export const keyFlame = {
+    "name" : "Key sculpture flame",
+    "defaultText" : [
+        [
+            "Luca" , "<flame is empty>"
+        ]
+    ] ,
+    "status01" : [
+        [
+            "Luca", "The flame is **1/4** full"
+        ]
+    ],
+    "status02" : [
+        [ 
+            "Luca", "The flame is **2/4** full"
+        ]
+    ] ,
+    "status03" : [
+        [ 
+            "Luca", "The flame is **3/4** full"
+        ]
+    ] ,
+
+    "endText": [
+        [
+            "Luca", "<completed dialogue>"
+        ]
+    ]
+}
+
+
+
+// ------------ EXHIBITS -----------
 
 export const retina = {
     "name": "Retina Exhibit",
@@ -53,19 +123,111 @@ export const retina = {
     ] 
 }
 
+export const iris = {
+    "name" : "Iris",
+    "defaultText" : [
+        [ /* Dialogue */
+            "Luca" , "It's a funny shape... I wonder what it could be?"
+        ] ,
+        [
+            "Luca" , "....if I stare at it too long I feel like it's moving slightly..."
+        ] ,
+        // Description
+        [
+            "The Iris (& Pupil)" , "<description line 01>"
+        ]
+    ]
+}
+
 export const lens = {
     
-    // defaultText dialogue
+    
     "name" : "Lens",
     "defaultText" : [
-        [
+        [ // defaultText dialogue
             "Luca" , 
             "It looks like it's made of glass - but when I touch it, it's actually soft like jelly...gross."
          ] ,
 
         [
-            "Luca" , 
-            "Maybe I should look around the room more for some clues? This must be useful somehow!"
+            "Luca", "There's a plaque on the base - let's see what it says..."
+        ] ,
+        // Description
+        [
+            "The Lens" , "<line 01> ..."
         ]
     ] 
 }
+
+export const brain = {
+    
+    
+    "name" : "Brain",
+    "defaultText" : [
+        [ // defaultText dialogue
+            "Luca" , 
+            "** IS THIS A REAL BRAIN??**"
+         ] ,
+
+        [
+            "Luca", "...  ......."
+        ] ,
+
+        [
+            "Luca", "... ** *gulp* ** lets find a way out of here soon - I don't want to become a brain in a jar!"
+        ] ,
+        [
+            "Luca", "Maybe this plaque will tell us more about it..."
+        ] ,
+        // Description
+        [
+            "The Brain" , "<line 01> ..."
+        ]
+    ] 
+}
+
+export const bigEye = {
+    
+    
+    "name" : "Brain",
+    "defaultText": [
+        [
+            "Luca", "<default dialogue eye closed>"
+        ]
+    ],
+    "openText" : [
+        [ // defaultText dialogue
+            "Luca" , 
+            "Wow that's a... giant and **super creepy** eye, weird choice of decoration. "
+         ] , 
+         [
+            "The Giant Eye" , "** *blink* ** *blink*"
+         ] , 
+         [
+            "Luca" , "I think it's **looking at that big key statue** in the middle of the room. Maybe it has something to do with unlocking the door?"
+         ]
+
+    ] 
+}
+
+export const panelRoom = {
+    "name": "Panel - room",
+    "defaultText" : [
+        [
+            "Luca", "<inactive comments>"
+        ]
+    ]
+}
+
+// Door 
+
+
+
+
+
+
+
+
+
+
+
