@@ -68,6 +68,8 @@ function eyeRoomScript() {
 
     // Key Sculpture
     const keySculpture = document.querySelector(`${sceneRoom} .key-sculpture`);
+    keySculpture.glowName = "key-flame";
+    keySculpture.glowSize = "90px";
     keySculpture.dialogue = dialogue.keyStatue;
 
     const keySculptureFlame = document.querySelector(`${sceneRoom} .key-sculpture .flame`);
@@ -80,6 +82,7 @@ function eyeRoomScript() {
     roomRetina.glowName = "retina";
     roomRetina.glowSize = "45px";
     roomRetina.dialogue = dialogue.retina;
+    roomRetina.hasRead = false;
     
     // Iris
     const roomIris = document.querySelector(`${sceneRoom} .iris`);
@@ -87,6 +90,7 @@ function eyeRoomScript() {
     roomIris.glowName = "iris";
     roomIris.glowSize = "100px";
     roomIris.dialogue = dialogue.iris;
+    roomIris.hasRead = false;
 
     // Lens
     const roomLens = document.querySelector(`${sceneRoom} .lens`);
@@ -94,6 +98,7 @@ function eyeRoomScript() {
     roomLens.glowName = "lens";
     roomLens.glowSize = "50px";
     roomLens.dialogue = dialogue.lens;
+    roomLens.hasRead = false;
     
     // Brain
     const roomBrain = document.querySelector(`${sceneRoom} .brain`);
@@ -101,6 +106,7 @@ function eyeRoomScript() {
     roomBrain.glowName = "brain";
     roomBrain.glowSize = "120px";
     roomBrain.dialogue = dialogue.brain;
+    roomBrain.hasRead = false;
 
 
     // --- Page state --- 
@@ -108,7 +114,8 @@ function eyeRoomScript() {
     const pageState = {
         
         "scene": "room",
-        "exhibitsComplete": false,
+        "exhibitsRead": 0,
+        // "exhibitsComplete": false,
         "exhibits": [
             roomBrain,
             roomIris,
@@ -123,15 +130,11 @@ function eyeRoomScript() {
     
     // ----- MAIN SCRIPT -----
 
+
     //Add Dark overlay
     eyeRoomPage.addEventListener("pointermove", updateTorchLight);
 
     eyeRoomPage.addEventListener("pointerdown", updateTorchLight);
-
-
-    if (pageState.exhibitsComplete) {
-        lightSwitch.addEventListener("click", removeDarkOverlay);
-    }
 
 
     // Add all click handlers to exhibits
@@ -142,11 +145,27 @@ function eyeRoomScript() {
     })
 
     // Add click handlers to room sprites
+
+    // Key sculpture - dialogue
     keySculpture.addEventListener("click", ()=> {
         showDialogue(keySculpture.dialogue.defaultText)
     })
 
+    // Lightswitch
     lightSwitch.addEventListener("click", updateLightSwitch);
+
+    // Update pageState exhibitsRead counter - to update key flame.
+    function updateKeyFlame () {
+        
+        console.log("--- updateKeyFlame running ---");
+        console.log("current value ExhibitsRead: " + pageState.exhibitsRead);
+        if (pageState.exhibitsRead > 0) {
+            const flamePercent = (1-(pageState.exhibitsRead / 4)) * 100;
+            keySculptureFlame.style.clipPath = `inset(${flamePercent}% 0 0 0)`;
+            darkOverlay.style.setProperty(`--${keySculpture.glowName}-size`, keySculpture.glowSize);
+        }
+
+    }
 
 
     // INTRO DIALOGUE
@@ -158,14 +177,16 @@ function eyeRoomScript() {
     function exhibitHandler (exhibit) {
         console.log(`*** exhibitHandler running for '${exhibit.classList}'***`);
 
-        const hasRead = exhibit.plaque.classList.contains("show");
+        exhibit.hasRead = exhibit.plaque.classList.contains("show");
 
         // show exhibit.dialogue.description
 
         showDialogue(exhibit.dialogue.defaultText);
 
-        if(hasRead === false) {
+        if(exhibit.hasRead === false) {
             activatePlaque(exhibit);
+            pageState.exhibitsRead++;
+            updateKeyFlame();
         }
 
 
@@ -174,6 +195,7 @@ function eyeRoomScript() {
     
             exhibit.plaque.classList.add("show");
             setTimeout(()=> {
+                // Add glow by setting background gradient properties for each object, on darkness overlay.
                 darkOverlay.style.setProperty(`--${exhibit.glowName}-size`, exhibit.glowSize);
             }, 1000);
         }
@@ -220,10 +242,18 @@ function eyeRoomScript() {
     function updateLightSwitch (e) {
 
         if (lightSwitch.classList.contains("off") == true) {
+            console.log("updateLightSwitch - ON");
             lightSwitch.classList.replace("off", "on");
+            // If all exhibits have been clicked - enables switch to turn light on
+            if (pageState.exhibitsRead >= 4) {
+                removeDarkOverlay();
+            }
         } else if (lightSwitch.classList.contains("on") == true) {
+            console.log("updateLightSwitch - OFF");
             lightSwitch.classList.replace("on", "off");
         }
+
+        
     }
 
 }

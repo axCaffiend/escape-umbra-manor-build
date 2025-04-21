@@ -219,7 +219,7 @@ export const brain = {
 export const bigEye = {
     
     
-    "name" : "Brain",
+    "name" : "Big Eye",
     "defaultText": [
         [
             "Luca", "<default dialogue eye closed>"

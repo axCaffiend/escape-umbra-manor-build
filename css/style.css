@@ -746,7 +746,7 @@ h1 {
   /* Lens */
   --lens-x: 235px;
   --lens-y: 370px;
-  --lens-size-show: 50px;
+  /* --lens-size-show: 50px; */
   --lens-size: 0px;
 
   /* Retina */
@@ -758,7 +758,7 @@ h1 {
   /* Key Flame */
   --key-flame-x: 366px;
   --key-flame-y: 435px;
-  --key-flame-size-show: 90px;
+  /* --key-flame-size-show: 90px; */
   --key-flame-size: 0px;
 
   display: block;
@@ -861,7 +861,7 @@ h1 {
 .key-sculpture .flame {
   /* border: solid 1px red; */
   top: 169px;
-  left: 63px;
+  left: 64px;
   width: 24px;
   height: 34px;
   background: url("/images/eye-room/key-flame-fill.png") no-repeat;
