@@ -865,6 +865,7 @@ h1 {
   width: 24px;
   height: 34px;
   background: url("/images/eye-room/key-flame-fill.png") no-repeat;
+  /* Change first inset value to fill up flame */
   clip-path: inset(100% 0 0 0);
   transition: clip-path 800ms;
 }
@@ -1181,7 +1182,7 @@ h1 {
 /* DIALOGUE BOX */
 
 .dialogue {
-  border: solid 1px blue;
+  /* border: solid 1px blue; */
   
   display: block;
   position: absolute;
@@ -1208,7 +1209,7 @@ h1 {
 
 /* Elements container*/
 .dialogue-box {
-  border: solid 1px red;
+  /* border: solid 1px red; */
 
   position: absolute;
   bottom: 2rem;
@@ -1256,7 +1257,7 @@ h1 {
 
 .dialogue-box .speech p {
   /* border: solid 1px blue; */
-  display: block;
+  display: none;
   max-width: 60ch;
   margin: 0 auto;
 
@@ -1268,7 +1269,7 @@ h1 {
 
 .dialogue-box .speech p.show {
   display: block;
-  color: red;
+  /* color: red; */
 }
 
 

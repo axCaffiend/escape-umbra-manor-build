@@ -128,9 +128,7 @@ function eyeRoomScript() {
 
     eyeRoomPage.addEventListener("pointerdown", updateTorchLight);
 
-    
 
-    
     if (pageState.exhibitsComplete) {
         lightSwitch.addEventListener("click", removeDarkOverlay);
     }
@@ -151,12 +149,9 @@ function eyeRoomScript() {
     lightSwitch.addEventListener("click", updateLightSwitch);
 
 
-    // Intro dialogue
+    // INTRO DIALOGUE
 
-    // 
-    
-
-
+    // showDialogue(dialogue.introDialogue.defaultText);
 
 
     // ------ FUNCTIONS -------

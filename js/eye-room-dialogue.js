@@ -1,3 +1,33 @@
+
+// ------------ INTRO ------------
+
+export const introDialogue = {
+    "defaultText" : [
+        [
+            "Luca", "*Pant pant* ...Phew! I never thought I'd get out of that scary dungeon!!"
+        ] ,
+        [
+            "Luca", "..."
+        ] ,
+        [
+            "Luca", "But I could be trapped here - I should move before that vampire finds me!! I'll go and take a peek outside the door..."
+        ],
+        [
+            "Luca", "... .... Hrnghh.... this door is stuck... oh no..."
+        ],
+        [
+            "Luca", "I'M TRAPPED AGAIN???"
+        ],
+        [
+            "Luca", "....OK don't panic - maybe **the door is locked** so I should **find the key**... Yeah!"
+        ],
+        [
+            "Luca", "Let's **look around the room** for some clues... it's pretty dark in here - I'm feeling SUPER creeped out now..."
+        ]
+    ]
+}
+
+
 // ------------ ROOM OBJECTS ------------
 
 export const lightSwitchText = {
